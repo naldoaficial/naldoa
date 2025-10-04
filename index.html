@@ -1,164 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaldoA Play</title>
-  <style>
-    /* Fundo animado com brilho */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
-      background-size: 600% 600%;
-      animation: gradientBG 12s ease infinite;
-      color: #fff;
-      text-align: center;
-    }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    /* Cabeçalho */
-    header {
-      padding: 30px;
-      font-size: 2em;
-      text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from {text-shadow: 0 0 10px #ff00ff;}
-      to {text-shadow: 0 0 25px #00ffff;}
-    }
-
-    /* Player da rádio */
-    .radio {
-      margin: 20px auto;
-      padding: 20px;
-      background: rgba(0,0,0,0.5);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ffff;
-      width: 320px;
-    }
-
-    /* Botões */
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px;
-      background: #ff00ff;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
-      transition: transform 0.2s;
-    }
-    .btn:hover {
-      transform: scale(1.1);
-      background: #00ffff;
-      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
-    }
-
-    /* Abas */
-    .tabs {
-      margin-top: 40px;
-    }
-    .tab-buttons {
-      margin-bottom: 20px;
-    }
-    .tab-buttons button {
-      background: #111;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      margin: 0 5px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #00ffff;
-    }
-    .tab-buttons button.active {
-      background: #00ffff;
-      color: #111;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-
-    iframe {
-      width: 80%;
-      height: 315px;
-      margin: 10px auto;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 0.9em;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NaldoA — DJ & Produtor | Official</title>
+  <meta name="description" content="NaldoA — DJ e produtor de EDM. Ouça músicas, assista ao canal no YouTube e entre em contato para shows." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    🎶 Bem-vindo à NaldoA Play 🎶
+
+  <!-- =========================
+       TOPO / RADIO CENTRAL
+  ========================= -->
+  <header class="radio-central">
+    <h2>📻 Rádio NaldoA Play</h2>
+    <audio controls>
+      <source src="https://stream.zeno.fm/xx785t45mf9uv" type="audio/mpeg">
+      Seu navegador não suporta o player de áudio.
+    </audio>
   </header>
 
-  <!-- Rádio no centro -->
-  <div class="radio">
-    <h2>📻 Minha Rádio</h2>
-    <audio controls>
-      <source src="URL-DA-SUA-RADIO-AQUI" type="audio/mpeg">
-      Seu navegador não suporta o player de rádio.
-    </audio>
-  </div>
+  <!-- =========================
+       HEADER / MENU
+  ========================= -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/NA.jpg" alt="Logo NaldoA" class="logo" />
+      <h1 class="sr-only">NaldoA</h1>
+    </div>
+    <nav class="nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+      <ul class="nav-list" id="navList">
+        <li><a href="#home">Home</a></li>
+        <li><a href="outra_area.html" target="_blank">Minha Área</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Botões -->
-  <div>
-    <a href="https://open.spotify.com" target="_blank" class="btn">Spotify</a>
-    <a href="https://youtube.com/@DjNaldoAoficial" target="_blank" class="btn">YouTube</a>
-    <a href="https://www.instagram.com/DjNaldoAoficial" target="_blank" class="btn">Instagram</a>
-  </div>
+  <main>
 
-  <!-- Abas de vídeos -->
-  <div class="tabs">
-    <div class="tab-buttons">
-      <button class="active" onclick="openTab(event, 'video1')">🎥 Vídeo 1</button>
-      <button onclick="openTab(event, 'video2')">🎥 Vídeo 2</button>
-      <button onclick="openTab(event, 'video3')">🎥 Vídeo 3</button>
-    </div>
-    <div id="video1" class="tab-content active">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div id="video2" class="tab-content">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div id="video3" class="tab-content">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
+    <!-- =========================
+         HERO / CAPA PRINCIPAL
+    ========================= -->
+    <section id="home" class="hero-home">
+      <div class="hero-inner">
+        <!-- Foto do NaldoA -->
+        <img src="assets/NaldoA.jpg" alt="NaldoA" class="foto-naldoa">
 
-  <footer>
-    © 2025 NaldoA Play - Todos os direitos reservados.
+        <h2 class="title">NaldoA</h2>
+        <p class="subtitle">EDM • Produções originais • Em Todas as Plataformas Digitais</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© NaldoA — Todos os direitos Reservados.</p>
+    </div>
   </footer>
 
-  <script>
-    function openTab(evt, tabId) {
-      var i, tabcontent, tabbuttons;
-      tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-      }
-      tabbuttons = document.querySelectorAll(".tab-buttons button");
-      tabbuttons.forEach(btn => btn.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
-  </script>
 </body>
 </html>
