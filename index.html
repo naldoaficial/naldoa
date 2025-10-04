@@ -7,21 +7,110 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
-  body{min-height:100vh;display:flex;flex-direction:column;align-items:center;background:#000;color:#fff;overflow-x:hidden;}
-  header{width:100%;padding:30px 20px;text-align:center;}
-  header h1{font-size:3rem;color:#ff0080;text-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;cursor:pointer;}
-  nav{margin:20px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
-  nav button{background:linear-gradient(45deg,#ff0080,#00f5ff);border:none;padding:12px 25px;border-radius:10px;color:#fff;font-weight:bold;cursor:pointer;box-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;transition:.3s;}
-  nav button:hover{transform:scale(1.1);box-shadow:0 0 20px #ff00ff,0 0 30px #00ffff;}
-  .radio-container{margin:40px 0;text-align:center;}
-  .radio-container audio{width:350px;outline:none;border-radius:10px;box-shadow:0 0 15px #ff0080,0 0 25px #00f5ff;}
-  .photos,.videos{width:90%;max-width:1200px;margin:30px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:25px;}
-  .photos img,.videos iframe{width:300px;border-radius:15px;box-shadow:0 0 15px #ff0080,0 0 20px #00f5ff;transition:transform .3s,box-shadow .3s;}
-  .photos img:hover,.videos iframe:hover{transform:scale(1.05);box-shadow:0 0 25px #ff00ff,0 0 30px #00ffff;}
-  section h2{width:100%;text-align:center;margin-bottom:20px;font-size:2rem;text-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;}
-  footer{margin-top:auto;padding:20px;background:rgba(0,0,0,0.6);width:100%;text-align:center;font-size:0.9rem;color:#ccc;}
-  canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
-  @media(max-width:768px){nav button{width:90%;margin:5px 0;}.photos img,.videos iframe{width:90%;}.radio-container audio{width:90%;}}
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background: url('sua-foto-principal.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color:#fff;
+    overflow-x:hidden;
+  }
+  header{
+    width:100%;
+    padding:30px 20px;
+    text-align:center;
+    text-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;
+  }
+  header h1{
+    font-size:3rem;
+    cursor:pointer;
+    transition: 0.3s;
+  }
+  header h1:hover{
+    text-shadow:0 0 20px #ff00ff,0 0 30px #00ffff;
+  }
+  nav{
+    margin:20px 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+  }
+  nav button{
+    background:linear-gradient(45deg,#ff0080,#00f5ff);
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;
+    transition:.3s;
+  }
+  nav button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px #ff00ff,0 0 30px #00ffff;
+  }
+  .radio-container{
+    margin:40px 0;
+    text-align:center;
+  }
+  .radio-container audio{
+    width:350px;
+    outline:none;
+    border-radius:10px;
+    box-shadow:0 0 15px #ff0080,0 0 25px #00f5ff;
+  }
+  .photos,.videos{
+    width:90%;
+    max-width:1200px;
+    margin:30px 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+  }
+  .photos img,.videos iframe{
+    width:300px;
+    border-radius:15px;
+    box-shadow:0 0 15px #ff0080,0 0 20px #00f5ff;
+    transition:transform .3s,box-shadow .3s;
+  }
+  .photos img:hover,.videos iframe:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px #ff00ff,0 0 30px #00ffff;
+  }
+  section h2{
+    width:100%;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:2rem;
+    text-shadow:0 0 10px #ff0080,0 0 20px #00f5ff;
+  }
+  footer{
+    margin-top:auto;
+    padding:20px;
+    background:rgba(0,0,0,0.6);
+    width:100%;
+    text-align:center;
+    font-size:0.9rem;
+    color:#ccc;
+  }
+  canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+  }
+  @media(max-width:768px){
+    nav button{width:90%;margin:5px 0;}
+    .photos img,.videos iframe{width:90%;}
+    .radio-container audio{width:90%;}
+  }
 </style>
 </head>
 <body>
@@ -51,7 +140,7 @@
   <img src="foto1.jpg" alt="Foto NaldoA">
   <img src="foto2.jpg" alt="Foto NaldoA">
   <img src="foto3.jpg" alt="Foto NaldoA">
-  <!-- Substitua pelas suas fotos -->
+  <!-- Substitua pelas suas fotos reais -->
 </section>
 
 <section class="videos">
@@ -59,7 +148,7 @@
   <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
   <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
   <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
-  <!-- Substitua pelos seus vídeos -->
+  <!-- Substitua pelos links reais dos seus vídeos -->
 </section>
 
 <footer>
@@ -98,7 +187,7 @@ function draw() {
     const r = barHeight + (25 * (i/bufferLength));
     const g = 250 * (i/bufferLength);
     const b = 50;
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillStyle = `rgba(${r},${g},${b},0.6)`;
     ctx.fillRect(x,canvas.height-barHeight,barWidth,barHeight);
     x += barWidth + 1;
   }
