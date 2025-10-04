@@ -1,66 +1,61 @@
-// script.js - comportamento do site
-document.addEventListener('DOMContentLoaded',function(){
-  // menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const navList = document.getElementById('navList');
-  navToggle && navToggle.addEventListener('click', ()=> navList.classList.toggle('show'));
-
-  // smooth scroll for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', function(e){
-      const hash = this.getAttribute('href');
-      if(hash.length>1){
-        e.preventDefault();
-        document.querySelector(hash).scrollIntoView({behavior:'smooth', block:'start'});
-        navList.classList.remove('show');
-      }
+document.addEventListener('DOMContentLoaded', function() {
+    // Lógica do Header e Animações de Scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
-  });
 
-  // playlist buttons to set audio source
-  const tracks = document.querySelectorAll('.track');
-  const audio = document.getElementById('audioPlayer');
-  const audioSource = document.getElementById('audioSource');
-  tracks.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const src = btn.dataset.src;
-      if(!src) return;
-      audioSource.src = src;
-      audio.load();
-      audio.play().catch(()=>{});
-      // highlight
-      tracks.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
+    // Efeito de Brilho ao Rolar
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.15 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Rádio no Topo
+    const playPauseButton = document.getElementById('play-pause-button');
+    const radioStream = document.getElementById('radio-stream');
+    const onAirPulse = document.querySelector('.on-air-pulse');
+    
+    playPauseButton.addEventListener('click', () => {
+        if (radioStream.paused) {
+            radioStream.play();
+            playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            onAirPulse.style.display = 'block';
+        } else {
+            radioStream.pause();
+            playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            onAirPulse.style.display = 'none';
+        }
     });
-  });
 
-  // contact form uses mailto fallback
-  const form = document.getElementById('contactForm');
-  form && form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const fd = new FormData(form);
-    const name = encodeURIComponent(fd.get('name') || '');
-    const email = encodeURIComponent(fd.get('email') || '');
-    const message = encodeURIComponent(fd.get('message') || '');
-    const subject = encodeURIComponent('Contato via site - NaldoA');
-    const body = encodeURIComponent('Nome: ') + name + '%0A' + encodeURIComponent('Email: ') + email + '%0A%0A' + message;
-    const mailto = `mailto:contato@naldoa.com?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
-  });
+    // Lógica "Carregar Mais Vídeos"
+    const allVideoIds = [ "dGdda27vfRM", "dwYoOnT_7Pc", "AHsb5xThjyk", "-wFl2OcdDnk", "GdE1z8Mf0zA", "s-p1w9kAkFY", "8FylSyd2Q6o", "lcSXpMr0OUw", "N4KYGevK0nA", "UZfhORsxS98", "BM4uCU1pUAY", "QoFsUuUjusc" ];
+    let loadedVideosCount = 0;
+    const videosGrid = document.querySelector('.videos-grid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-// Menu responsivo
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navList').classList.toggle('open');
-});
-
-  
-  // whatsapp quick link (replace PHONE with your number)
-  const whatsappBtn = document.getElementById('whatsappBtn');
-  whatsappBtn && whatsappBtn.addEventListener('click', function(e){
-    e.preventDefault();
-    // edit this number to your WhatsApp number in international format, e.g. 5511999999999
-    const phone = '5511999999999';
-    const text = encodeURIComponent('Olá NaldoA, quero falar sobre shows/parcerias.');
-    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-  });
+    function loadMoreVideos() {
+        const videosToLoad = allVideoIds.slice(loadedVideosCount, loadedVideosCount + 3);
+        videosToLoad.forEach(videoId => {
+            const videoContainer = document.createElement('div');
+            videoContainer.className = 'video-container reveal';
+            videoContainer.innerHTML = `<iframe loading="lazy" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+            videosGrid.appendChild(videoContainer);
+            revealObserver.observe(videoContainer); // Adiciona o novo vídeo ao observador de animação
+        });
+        loadedVideosCount += 3;
+        if (loadedVideosCount >= allVideoIds.length) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+    loadMoreBtn.addEventListener('click', loadMoreVideos);
 });
