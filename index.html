@@ -1,163 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NaldoA — DJ & Produtor | Official</title>
-  <meta name="description" content="NaldoA — DJ e produtor de EDM. Ouça músicas, assista ao canal no YouTube e entre em contato para shows." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaldoA - Rádio e Música</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- =========================
-       TOPO DA RÁDIO
-  ========================= -->
-  <header class="radio-topo">
-    <img src="assets/radio naldoa play.jpg" alt="radio naldoa play" class="logo-radio">
-    <div>
-      <h2>📻 Rádio NaldoA Play</h2>
-      <audio controls>
-        <source src="https://stream.zeno.fm/xx785t45mf9uv" type="audio/mpeg">
-        Seu navegador não suporta o player de áudio.
-      </audio>
-    </div>
-  </header>
-
-  <!-- =========================
-       HEADER / MENU
-  ========================= -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="assets/NA.jpg" alt="Logo NaldoA" class="logo" />
-      <h1 class="sr-only">NaldoA</h1>
-    </div>
-    <nav class="nav">
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
-      <ul class="nav-list" id="navList">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#musicas">Músicas</a></li>
-        <li><a href="#videos" target="_blank">Vídeos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🎶 Rádio NaldoA Play 🎧</h1>
+    <nav>
+      <a href="index.html" class="active">Início</a>
+      <a href="videos.html">Vídeos</a>
+      <a href="contato.html">Contato</a>
     </nav>
   </header>
 
-  <main>
+  <!-- Rádio no topo -->
+  <section class="radio-section">
+    <h2>▶️ Ouça Agora</h2>
+    <audio controls autoplay>
+      <source src="https://stream.zeno.fm/f5u9svdudchvv" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </section>
 
-    <!-- =========================
-         HERO / CAPA PRINCIPAL
-    ========================= -->
-    <section id="home" class="hero">
-      <div class="hero-inner">
-        <h2 class="title">NaldoA</h2>
-        <p class="subtitle">EDM • Produções originais • Em Todas as Plataformas Digitais</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#musicas">Ouvir agora</a>
-          <a class="btn ghost" href="https://www.youtube.com/@DjNaldoAOficial" target="_blank" rel="noopener">Canal no YouTube</a>
-          <a class="btn ghost" href="videos.html" target="_blank">Ver todos os vídeos</a>
-        </div>
-      </div>
-
-      <!-- Foto do NaldoA -->
-      <img src="assets/NaldoA.jpg" alt="NaldoA" class="foto-naldoa">
-    </section>
-
-    <!-- =========================
-         SOBRE
-    ========================= -->
-    <section id="sobre" class="about">
-      <div class="container">
-        <h3>Sobre</h3>
-        <p>Sou o <strong>NaldoA</strong>, DJ e produtor focado em EDM. Tenho <strong>4 álbuns lançados</strong> disponíveis em plataformas digitais e um canal no YouTube chamado <em>NaldoA</em>. Uso o perfil <code>@DjNaldoAoficial</code> no TikTok para divulgar minhas tracks.</p>
-        <p>Este site é meu hub oficial: discografia, players, links para streaming e contato para shows e parcerias.</p>
-      </div>
-    </section>
-
-    <!-- =========================
-         MÚSICAS / ÁLBUNS
-    ========================= -->
-    <section id="musicas" class="music">
-      <div class="container">
-        <h3>Discografia & Player</h3>
-
-        <!-- Álbuns -->
-        <div class="albums">
-          <article class="album">
-            <a href="https://open.spotify.com/album/5GmHkjAUvZq8UgP1XfwkS3?si=pqE_6o4GR8a3ZBotMqhsqQ" target="_blank" class="btn-spotify">
-              🎵 Ouça no Spotify
-            </a>
-            <img src="assets/Tiempo Loco.jpg" alt="Álbum 1" />
-            <h4>Álbum 1</h4>
-            <p>Single/EP de destaque. Disponível em plataformas.</p>
-          </article>
-
-          <article class="album">
-            <a href="https://open.spotify.com/album/5JGxeoiFb3dlQmXRiumOBN?si=fwuJjBjVR9CibC5vYjq46g" target="_blank" class="btn-spotify">
-              🎵 Ouça no Spotify
-            </a>
-            <img src="assets/The Last Dance.jpg" alt="Álbum 2" />
-            <h4>Álbum 2</h4>
-            <p>Energia e drops potentes.</p>
-          </article>
-        </div>
-
-        <!-- Player de música -->
-        <div class="player">
-          <h4>Ouvir Minha Nova Música - Infinite</h4>
-          <div class="playlist" id="playlist">
-            <button class="track" data-src="assets/sample_track.wav">Sample Track — 0:03</button>
-          </div>
-          <audio id="audioPlayer" controls preload="none">
-            <source id="audioSource" src="assets/sample_track.wav" type="audio/wav" />
-            Seu navegador não suporta o elemento de áudio.
-          </audio>
-
-          <!-- Embed Spotify -->
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
-         CONTATO
-    ========================= -->
-    <section id="contato" class="contact">
-      <div class="container">
-        <h3>Contato</h3>
-        <p>Quer me contratar ou fazer uma parceria? Use o formulário ou mande uma mensagem direta:</p>
-        <form id="contactForm">
-          <label>
-            Nome
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            E‑mail
-            <input type="email" name="email" required />
-          </label>
-          <label>
-            Mensagem
-            <textarea name="message" rows="4" required></textarea>
-          </label>
-          <div class="form-actions">
-            <button type="submit" class="btn">Enviar por e‑mail</button>
-            <a class="btn ghost" id="whatsappBtn" href="#">WhatsApp</a>
-          </div>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© NaldoA — Todos os direitos Reservados.</p>
+  <!-- Apresentação -->
+  <section class="about">
+    <h2>🔥 Bem-vindo ao universo NaldoA</h2>
+    <p>
+      Aqui você encontra minhas produções, sets e músicas exclusivas.  
+      Conecte-se à vibe eletrônica e curta o melhor da EDM com muito brilho e energia!
+    </p>
+    <div class="buttons">
+      <a href="videos.html" class="btn">🎬 Meus Vídeos</a>
+      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank" class="btn">📺 Canal no YouTube</a>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Redes sociais -->
+  <section class="social">
+    <h2>🌐 Conecte-se comigo</h2>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@DjNaldoAoficial" target="_blank">TikTok</a>
+      <a href="https://open.spotify.com" target="_blank">Spotify</a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>© 2025 NaldoA - Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
