@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             videoContainer.className = 'video-container reveal';
             videoContainer.innerHTML = `<iframe loading="lazy" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
             videosGrid.appendChild(videoContainer);
-            revealObserver.observe(videoContainer); // Adiciona o novo vídeo ao observador de animação
+            revealObserver.observe(videoContainer);
         });
         loadedVideosCount += 3;
         if (loadedVideosCount >= allVideoIds.length) {
