@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #9b59b6; /* Roxo principal */
-            --secondary-color: #3498db; /* Azul para o gradiente */
-            --highlight-color: #f1c40f; /* Dourado para detalhes */
-            --background-dark: #000000;
+            --primary-color: #ab68d5; /* Roxo mais vibrante */
+            --secondary-color: #56CCF2; /* Azul ciano */
+            --highlight-color: #FFD700; /* Dourado para brilhos */
+            --background-dark: #0c0a18;
             --text-color: #f0f0f0;
-            --glass-bg: rgba(15, 12, 41, 0.4); /* Roxo escuro transparente */
+            --glass-bg: rgba(15, 12, 41, 0.4);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         html, body {
@@ -25,44 +25,38 @@
             overflow-x: hidden;
         }
         
-        /* --- FUNDO DE GALÁXIA COM ESTRELAS EM MOVIMENTO --- */
-        @keyframes move-stars {
-            from { transform: translateY(0px); }
-            to   { transform: translateY(-2000px); }
+        /* --- NOVO FUNDO DE GALÁXIA ANIMADA --- */
+        .galaxy-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: linear-gradient(60deg, var(--primary-color), #302b63, #24243e, var(--background-dark), var(--secondary-color));
+            background-size: 400% 400%;
+            animation: move-galaxy 20s ease infinite;
         }
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-        .stars { background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABGlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhCDURAAAAV3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f3+fvMWwAAAAAWJLR0QN9rRh9QAAANJJREFUOMt1V8dyxCAIBA1VFAVBRBAFRBDR93/f886BJHna7s7p19l58807d87+FkStqY22T2E0aXq6BgaY/xYg55UFIklz2dltcQ0AZjmf5WEx1/tO3GZkE/s3s7y2J2fP+52y21Z2S85Xcp2y/H+HU2Vn8pzNnPE8z84RL9l1s723Wzkdkj2P2T/L/LPNnPK4Pz85C5fN7v97fwe4tLS83fI+P57e7h/sNn13P9wdj1/c3wPj8x3c/s/M8/cvx/K8/p/wP/A84N82vQ1o2wZ01a/z9A24D0/s/4u2gPT/n0Wf+P5wduA9P6L9wLz/wAIAAJ/z/A84X9B/gPcB6f/47wNOA9P7P+LtqA9P+fRZ/4/nB24D0/ov3AvP/AAAAEBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB... no-repeat;
-            animation: move-stars 150s linear infinite;
+        @keyframes move-galaxy {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
         }
-        .stars2 {
-            background-size: 2px 2px;
-            animation: move-stars 100s linear infinite;
+        .twinkling-stars {
+            position: fixed; top: 0; left: 0; width: 200%; height: 200%; z-index: -1;
+            background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABGlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhCDURAAAAV3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f3+fvMWwAAAAAWJLR0QN9rRh9QAAANJJREFUOMt1V8dyxCAIBA1VFAVBRBAFRBDR93/f886BJHna7s7p19l58807d87+FkStqY22T2E0aXq6BgaY/xYg55UFIklz2dltcQ0AZjmf5WEx1/tO3GZkE/s3s7y2J2fP+52y21Z2S85Xcp2y/H+HU2Vn8pzNnPE8z84RL9l1s723Wzkdkj2P2T/L/LPNnPK4Pz85C5fN7v97fwe4tLS83fI+P57e7h/sNn13P9wdj1/c3wPj8x3c/s/M8/cvx/K8/p/wP/A84N82vQ1o2wZ01a/z9A24D0/s/4u2gPT/n0Wf+P5wduA9P6L9wLz/wAIAAJ/z/A84X9B/gPcB6f/47wNOA9P7P+LtqA9P+fRZ/4/nB24D0/ov3AvP/AAAAEBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4EBHB4E... no-repeat;
+            animation: twinkling 200s linear infinite;
         }
-        .stars3 {
-            background-size: 1px 1px;
-            animation: move-stars 50s linear infinite;
-        }
-
+        
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
         /* --- ANIMAÇÃO DE BRILHO AO ROLAR --- */
         @keyframes shine-reveal {
-            0% {
-                transform: translateY(100px);
-                opacity: 0;
-                box-shadow: 0 0 5px var(--highlight-color);
-            }
-            50% {
-                box-shadow: 0 0 40px var(--primary-color), 0 0 60px var(--secondary-color);
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-                box-shadow: 0 0 0 transparent;
-            }
+            0% { transform: translateY(100px); opacity: 0; }
+            50% { box-shadow: 0 0 25px var(--primary-color), 0 0 40px var(--secondary-color); }
+            100% { transform: translateY(0); opacity: 1; box-shadow: none; }
         }
         .reveal {
             opacity: 0;
+            transition: opacity 1s ease-out;
+            border: 1px solid transparent; /* Garante que o layout não pule */
         }
         .reveal.active {
             animation: shine-reveal 1.2s forwards ease-out;
@@ -70,187 +64,99 @@
         
         /* --- Header com RÁDIO NO TOPO --- */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; padding: 15px 0;
+            z-index: 1000; transition: all 0.3s ease;
         }
         header.scrolled {
-            background: rgba(15, 12, 41, 0.85);
+            background: rgba(15, 12, 41, 0.7);
             backdrop-filter: blur(10px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo img {
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo img { height: 50px; transition: transform 0.3s ease; }
         
-        .header-radio {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: 40px; /* Espaço da logo */
-        }
+        .header-radio { display: flex; align-items: center; gap: 15px; margin-left: 40px; }
         .header-radio .play-button {
-            width: 45px; /* Tamanho ajustado */
-            height: 45px;
+            width: 45px; height: 45px;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem; /* Tamanho do ícone */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
+            color: white; border-radius: 50%; border: none; cursor: pointer;
+            font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-        .header-radio .play-button:hover {
-            transform: scale(1.1);
-        }
-        .header-radio .status .radio-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .header-radio .status .on-air-text {
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .header-radio .play-button:hover { transform: scale(1.1); box-shadow: 0 0 15px var(--secondary-color); }
+        .header-radio .status .radio-name { font-weight: 700; font-size: 1.1rem; }
+        .header-radio .status .on-air-text { font-size: 0.8rem; display: flex; align-items: center; gap: 5px; }
         .on-air-pulse {
-            width: 8px;
-            height: 8px;
-            background-color: #f00;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-            display: none; /* Começa escondido */
+            width: 8px; height: 8px; background-color: #ff3b3b;
+            border-radius: 50%; animation: pulse 1.5s infinite;
+            display: none; box-shadow: 0 0 5px #ff3b3b, 0 0 10px #ff3b3b;
         }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+            0% { transform: scale(0.9); } 70% { transform: scale(1.1); } 100% { transform: scale(0.9); }
         }
         
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            margin-left: auto; /* Empurra os links para a direita */
-        }
+        .nav-links { display: flex; gap: 40px; list-style: none; margin-left: auto; }
         .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            position: relative;
-            padding-bottom: 5px;
-            transition: color 0.3s ease;
+            color: var(--text-color); text-decoration: none; font-weight: 500;
+            font-size: 1.1rem; transition: color 0.3s ease;
         }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--highlight-color);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--highlight-color); }
         .hamburger { display: none; }
 
         /* --- Hero --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            height: 100vh; display: flex; align-items: center;
+            justify-content: center; text-align: center;
         }
         .hero-content h1 {
-            font-size: 5.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 5.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--highlight-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-animation 5s ease infinite;
-            background-size: 200% 200%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradient-animation 5s ease infinite; background-size: 200% 200%;
         }
         @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
         }
-        .hero-content p {
-            font-size: 1.7rem;
-            margin-top: 15px;
-            font-weight: 300;
-        }
+        .hero-content p { font-size: 1.7rem; margin-top: 15px; font-weight: 300; }
 
         /* --- Seções --- */
         .section { padding: 100px 0; }
         .section-title {
-            text-align: center;
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            color: var(--highlight-color);
+            text-align: center; font-size: 3.2rem; font-weight: 700;
+            margin-bottom: 60px; text-transform: uppercase; color: var(--highlight-color);
         }
         
         /* --- Sobre --- */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            align-items: center;
-            gap: 60px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(5px);
-            padding: 50px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid; grid-template-columns: 1fr 1.5fr; align-items: center; gap: 60px;
+            background: var(--glass-bg); backdrop-filter: blur(5px); padding: 50px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .about-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .about-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .about-text h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--highlight-color); }
         .about-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: rgba(255,255,255,0.9); }
 
+        /* --- Rádio (Nova Seção Central) --- */
+        .radio-section { text-align: center; }
+        .radio-logo { max-width: 300px; margin-bottom: 30px; transition: transform 0.3s ease; }
+        .radio-logo:hover { transform: scale(1.05); }
+        .radio-section p { font-size: 1.2rem; margin-top: 20px; color: rgba(255,255,255,0.8); }
+
         /* --- Spotify & Vídeos --- */
         .spotify-button, #loadMoreBtn {
-            display: inline-block;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 40px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            display: inline-block; padding: 15px 35px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; font-size: 1.1rem; margin-top: 40px; cursor: pointer;
+            transition: all 0.3s ease; box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
         .spotify-button { background-color: #1DB954; color: white; }
         .spotify-button:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4); }
         #loadMoreBtn { background: var(--highlight-color); color: #000; border: none; }
         #loadMoreBtn:hover { background: var(--secondary-color); color: #000; transform: translateY(-3px); }
 
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
+        .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .video-container:hover { transform: translateY(-5px); }
@@ -258,26 +164,13 @@
         
         /* --- Footer --- */
         footer {
-            padding: 60px 0;
-            text-align: center;
+            padding: 60px 0; text-align: center;
             background: rgba(15, 12, 41, 0.9);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .footer-socials a {
-            color: var(--secondary-color);
-            font-size: 2rem;
-            margin: 0 20px;
-            transition: all 0.3s ease;
-        }
-        .footer-socials a:hover {
-            color: var(--highlight-color);
-            transform: translateY(-5px);
-        }
-        footer p {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
+        .footer-socials a { color: var(--secondary-color); font-size: 2rem; margin: 0 20px; transition: all 0.3s ease; }
+        .footer-socials a:hover { color: var(--highlight-color); transform: translateY(-5px); }
+        footer p { margin-top: 30px; font-size: 0.9rem; color: rgba(255,255,255,0.7); }
         
         /* --- Responsividade --- */
         @media (max-width: 992px) {
@@ -288,7 +181,7 @@
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 3.5rem; }
             .about-content { grid-template-columns: 1fr; }
-            .header-radio { display: none; }
+            .header-radio { display: none; } /* Esconde a rádio no header em telas MUITO pequenas */
         }
     </style>
 </head>
@@ -316,13 +209,12 @@
 
             <ul class="nav-links">
                 <li><a href="#about">Sobre</a></li>
+                <li><a href="#radio">Rádio</a></li>
                 <li><a href="#music">Música</a></li>
                 <li><a href="#videos">Vídeos</a></li>
             </ul>
             <div class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
+                <div></div><div></div><div></div>
             </div>
         </div>
     </header>
@@ -347,13 +239,21 @@
                     <div class="about-text">
                         <h3>Criando as batidas que movem o cosmos</h3>
                         <p>Bem-vindo à minha galáxia musical. Sou NaldoA, um explorador sonoro dedicado a mapear as fronteiras da música eletrônica. Cada track é uma nebulosa de emoções, cada batida, uma supernova de energia.</p>
-                        <p>Navegue pelo site para descobrir novas constelações de som no Spotify e assistir a vídeos das minhas viagens musicais.</p>
+                        <p>Navegue pelo site para sintonizar, descobrir novas constelações de som no Spotify e assistir a vídeos das minhas viagens musicais.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="music" class="section spotify-section">
+        <section id="radio" class="section radio-section">
+            <div class="container reveal">
+                <h2 class="section-title">Rádio Intergaláctica</h2>
+                <img src="radio-logo.jpg" alt="NaldoA Play Radio Logo" class="radio-logo">
+                <p>Sua frequência 24/7 com o melhor do universo EDM. Sintonize agora.</p>
+            </div>
+        </section>
+
+        <section id="music" class="section">
             <div class="container reveal">
                 <h2 class="section-title">Constelação Musical</h2>
                 <iframe data-testid="embed-iframe" style="border-radius:12px; border: 1px solid rgba(255,255,255,0.1);" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -390,14 +290,12 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Lógica do Header e Animações de Scroll
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // Efeito de Brilho ao Rolar
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -425,7 +323,6 @@
             }
         });
 
-        // Lógica "Carregar Mais Vídeos"
         const allVideoIds = [ "dGdda27vfRM", "dwYoOnT_7Pc", "AHsb5xThjyk", "-wFl2OcdDnk", "GdE1z8Mf0zA", "s-p1w9kAkFY", "8FylSyd2Q6o", "lcSXpMr0OUw", "N4KYGevK0nA", "UZfhORsxS98", "BM4uCU1pUAY", "QoFsUuUjusc" ];
         let loadedVideosCount = 0;
         const videosGrid = document.querySelector('.videos-grid');
