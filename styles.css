@@ -1,34 +1,21 @@
-/* Reset */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
   color: #fff;
-  overflow-x: hidden;
 }
 
-/* Cabeçalho */
 header {
   text-align: center;
   padding: 20px;
   background: #111;
-  box-shadow: 0 0 15px rgba(0,0,0,0.7);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
 }
 
 header h1 {
   margin: 0;
-  font-size: 28px;
   color: #00ffe0;
-  text-shadow: 0 0 15px #00ffe0, 0 0 30px #0077ff;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 15px #00ffe0; }
-  to { text-shadow: 0 0 25px #00c3ff, 0 0 40px #00ffe0; }
+  text-shadow: 0 0 15px #00ffe0, 0 0 25px #0077ff;
 }
 
 nav {
@@ -48,100 +35,36 @@ nav a:hover, nav a.active {
   text-shadow: 0 0 10px #00ffe0;
 }
 
-/* Rádio */
-.radio-section {
+.videos-page h2 {
   text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #0f0f0f, #222);
-  box-shadow: inset 0 0 20px rgba(0,255,224,0.2);
-}
-
-.radio-section h2 {
-  color: #fff;
-  margin-bottom: 15px;
-  text-shadow: 0 0 15px #00ffe0;
-}
-
-.radio-section audio {
-  width: 90%;
-  max-width: 400px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,255,224,0.6);
-}
-
-/* Sobre */
-.about {
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.about h2 {
+  margin: 30px 0 20px;
   font-size: 26px;
-  margin-bottom: 15px;
-  color: #00ffe0;
+  color: #fff;
   text-shadow: 0 0 15px #00ffe0;
 }
 
-.about p {
-  max-width: 600px;
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 0 20px 40px;
+  max-width: 1200px;
   margin: auto;
-  line-height: 1.6;
 }
 
-.buttons {
-  margin-top: 20px;
+.videos-grid iframe {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,224,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 20px;
-  background: #00ffe0;
-  color: #000;
-  font-weight: bold;
-  border-radius: 30px;
-  text-decoration: none;
-  box-shadow: 0 0 15px #00ffe0;
-  transition: transform 0.3s, box-shadow 0.3s;
+.videos-grid iframe:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0,255,224,0.9), 0 0 50px rgba(0,150,255,0.7);
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px #00ffe0, 0 0 40px #00c3ff;
-}
-
-/* Redes sociais */
-.social {
-  text-align: center;
-  padding: 40px 20px;
-  background: #111;
-  box-shadow: inset 0 0 20px rgba(0,255,224,0.2);
-}
-
-.social h2 {
-  margin-bottom: 20px;
-  color: #00ffe0;
-  text-shadow: 0 0 15px #00ffe0;
-}
-
-.social-links a {
-  margin: 10px;
-  text-decoration: none;
-  color: #00ffe0;
-  font-weight: bold;
-  padding: 10px 18px;
-  border: 1px solid #00ffe0;
-  border-radius: 25px;
-  transition: background 0.3s, color 0.3s;
-}
-
-.social-links a:hover {
-  background: #00ffe0;
-  color: #000;
-  box-shadow: 0 0 20px #00ffe0;
-}
-
-/* Rodapé */
 footer {
   text-align: center;
   padding: 15px;
