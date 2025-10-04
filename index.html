@@ -3,728 +3,666 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NaldoA - Música, Vídeos e Rádio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NaldoA - Galáxia Musical</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #9b59b6; /* Roxo principal */
+            --secondary-color: #3498db; /* Azul para o gradiente */
+            --highlight-color: #f1c40f; /* Dourado para detalhes */
+            --background-dark: #000000;
+            --text-color: #f0f0f0;
+            --glass-bg: rgba(15, 12, 41, 0.4); /* Roxo escuro transparente */
         }
-
-        body {
-            background-color: #0a0a1f;
-            color: #fff;
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-dark);
             overflow-x: hidden;
-            position: relative;
+        }
+        
+        /* --- FUNDO DE GALÁXIA COM ESTRELAS EM MOVIMENTO --- */
+        @keyframes move-stars {
+            from { transform: translateY(0px); }
+            to   { transform: translateY(-2000px); }
+        }
+        .stars { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            background: #000 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPjxyZWN0IHdpZHRoPSI1IiBoZWlnaHQ9IjUiIGZpbGw9IiMwMDAiPjwvcmVjdD48Y2lyY2xlIGN4PSIyLjUiIGN5PSIyLjUiIHI9IjEiIGZpbGw9IiNmZmYiPjwvY2lyY2xlPjwvc3ZnPg==') repeat;
+            animation: move-stars 150s linear infinite;
+        }
+        .stars2 {
+            background-size: 2px 2px;
+            animation: move-stars 100s linear infinite;
+        }
+        .stars3 {
+            background-size: 1px 1px;
+            animation: move-stars 50s linear infinite;
         }
 
-        /* Fundo espacial com estrelas */
-        #space-background {
+        /* --- LUZES MÓVEIS --- */
+        .light {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(155,89,182,0.3) 0%, rgba(52,152,219,0.1) 40%, transparent 70%);
+            filter: blur(10px);
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 200px) rotate(90deg); }
+            50% { transform: translate(200px, 100px) rotate(180deg); }
+            75% { transform: translate(100px, 0) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+
+        /* --- ANIMAÇÃO DE BRILHO AO ROLAR --- */
+        @keyframes shine-reveal {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+                box-shadow: 0 0 5px var(--highlight-color);
+            }
+            50% {
+                box-shadow: 0 0 40px var(--primary-color), 0 0 60px var(--secondary-color);
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+                box-shadow: 0 0 0 transparent;
+            }
+        }
+        .reveal {
+            opacity: 0;
+        }
+        .reveal.active {
+            animation: shine-reveal 1.2s forwards ease-out;
+        }
+        
+        /* --- Header com RÁDIO NO TOPO --- */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: twinkle 5s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        /* Header e navegação */
-        header {
-            background: rgba(10, 10, 31, 0.8);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(15, 12, 41, 0.85);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #6c63ff;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .logo span {
-            color: #ff6b6b;
-        }
-
-        nav ul {
+        .navbar {
             display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        nav ul li a:hover {
-            color: #6c63ff;
-            background: rgba(108, 99, 255, 0.1);
-        }
-
-        /* Seção da Rádio */
-        .radio-section {
-            background: linear-gradient(135deg, #1a1a3e, #0a0a1f);
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 1px solid rgba(108, 99, 255, 0.3);
-        }
-
-        .radio-title {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #6c63ff;
-        }
-
-        .radio-player {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .radio-controls {
-            display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
         }
-
-        .play-btn {
-            background: #6c63ff;
+        .nav-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
+        .nav-logo span {
+            color: var(--primary-color);
+        }
+        
+        .header-radio {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 40px;
+        }
+        .header-radio .play-button {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
             border-radius: 50%;
-            font-size: 24px;
+            border: none;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 0 15px;
-        }
-
-        .play-btn:hover {
-            background: #5a52d5;
-            transform: scale(1.05);
-        }
-
-        .volume-control {
-            width: 100px;
-            margin: 0 15px;
-        }
-
-        /* Seções de conteúdo */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #6c63ff;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: #ff6b6b;
-        }
-
-        /* Vídeos */
-        .videos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .video-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.2);
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            height: 180px;
-            background: #1a1a3e;
+            font-size: 1.1rem;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 50px;
-            color: #6c63ff;
+            justify-content: center;
+            transition: transform 0.2s ease;
         }
-
-        .video-info {
-            padding: 20px;
+        .header-radio .play-button:hover {
+            transform: scale(1.1);
         }
-
-        .video-title {
-            font-size: 18px;
-            margin-bottom: 10px;
+        .header-radio .status .radio-name {
+            font-weight: 700;
+            font-size: 1.1rem;
         }
-
-        .video-link {
-            display: inline-block;
-            background: #6c63ff;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
+        .header-radio .status .on-air-text {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .on-air-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            display: none;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin-left: auto;
+        }
+        .nav-links a {
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            transition: background 0.3s;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--highlight-color);
+        }
+        .hamburger { display: none; }
+
+        /* --- Hero --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero-content h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--highlight-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-content p {
+            font-size: 1.7rem;
+            margin-top: 15px;
+            font-weight: 300;
         }
 
-        .video-link:hover {
-            background: #5a52d5;
+        /* --- Seções --- */
+        .section { padding: 100px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            color: var(--highlight-color);
         }
-
-        /* Músicas */
-        .music-container {
+        
+        /* --- Sobre --- */
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1.5fr;
+            align-items: center;
+            gap: 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+        }
+        .about-text h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--highlight-color); }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: rgba(255,255,255,0.9); }
+
+        /* --- Spotify & Vídeos --- */
+        .spotify-button, #loadMoreBtn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .spotify-button { background-color: #1DB954; color: white; }
+        .spotify-button:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4); }
+        #loadMoreBtn { background: var(--highlight-color); color: #000; border: none; }
+        #loadMoreBtn:hover { background: var(--secondary-color); color: #000; transform: translateY(-3px); }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
-
-        .music-card {
-            background: rgba(255, 255, 255, 0.05);
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
             border-radius: 10px;
-            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .video-container:hover { transform: translateY(-5px); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
+        /* --- Seção de Músicas --- */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .music-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .music-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-        }
-
+        .music-card:hover { transform: translateY(-10px); }
         .music-icon {
-            font-size: 40px;
-            color: #ff6b6b;
+            font-size: 3rem;
+            color: var(--highlight-color);
             margin-bottom: 15px;
         }
-
         .music-title {
-            font-size: 18px;
+            font-size: 1.5rem;
             margin-bottom: 10px;
+            color: var(--text-color);
         }
-
+        .music-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
         .music-link {
             display: inline-block;
-            background: #ff6b6b;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
-
         .music-link:hover {
-            background: #e55a5a;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
         }
-
-        /* Links */
-        .links-container {
+        
+        /* --- Seção de Links --- */
+        .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
-
         .link-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-        }
-
+        .link-card:hover { transform: translateY(-10px); }
         .link-icon {
-            font-size: 30px;
-            color: #6c63ff;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            color: var(--highlight-color);
+            margin-bottom: 15px;
         }
-
         .link-title {
-            font-size: 16px;
+            font-size: 1.3rem;
             margin-bottom: 10px;
+            color: var(--text-color);
         }
-
-        .link-btn {
+        .link-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        .link-button {
             display: inline-block;
-            background: #6c63ff;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
             text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
-
-        .link-btn:hover {
-            background: #5a52d5;
+        .link-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
         }
-
-        /* Redes Sociais */
-        .social-section {
-            background: linear-gradient(135deg, #1a1a3e, #0a0a1f);
+        
+        /* --- Footer --- */
+        footer {
             padding: 60px 0;
             text-align: center;
-            border-top: 1px solid rgba(108, 99, 255, 0.3);
+            background: rgba(15, 12, 41, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .social-title {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: #6c63ff;
-        }
-
-        .social-buttons {
+        .footer-socials {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
+            margin-bottom: 30px;
         }
-
-        .social-btn {
+        .footer-socials a {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            font-size: 24px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
             text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .social-btn:hover {
+        .footer-socials a:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-
-        .facebook { background: #3b5998; }
-        .instagram { background: #e1306c; }
-        .youtube { background: #ff0000; }
-        .twitter { background: #1da1f2; }
-        .tiktok { background: #000000; }
-        .spotify { background: #1db954; }
-
-        /* Footer */
-        footer {
-            background: #0a0a1f;
-            padding: 30px 0;
-            text-align: center;
-            border-top: 1px solid rgba(108, 99, 255, 0.3);
+        footer p {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
         }
-
-        .footer-text {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
+        
+        /* --- Responsividade --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; z-index: 1001; }
+            .header-radio { margin-left: auto; margin-right: 20px; }
+            .about-content { grid-template-columns: 1fr; }
         }
-
-        /* Efeito de brilho ao rolar */
-        .glow {
-            position: relative;
-        }
-
-        .glow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none;
-        }
-
-        .glow.active::before {
-            opacity: 1;
-        }
-
-        /* Responsividade */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 24px;
-            }
-            
-            nav ul li {
-                margin: 5px 10px;
-            }
-            
-            .radio-title {
-                font-size: 28px;
-            }
-            
-            .section-title {
-                font-size: 26px;
-            }
-            
-            .videos-container,
-            .music-container,
-            .links-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-buttons {
-                gap: 15px;
-            }
-            
-            .social-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
+            .hero-content h1 { font-size: 3.5rem; }
+            .header-radio { display: none; }
+            .section-title { font-size: 2.5rem; }
+            .footer-socials { gap: 15px; }
+            .footer-socials a { width: 50px; height: 50px; font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Fundo espacial -->
-    <div id="space-background"></div>
+    
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    
+    <!-- Luzes móveis -->
+    <div class="light" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="light" style="top: 60%; left: 80%; animation-delay: -5s;"></div>
+    <div class="light" style="top: 80%; left: 40%; animation-delay: -10s;"></div>
+    <div class="light" style="top: 30%; left: 70%; animation-delay: -15s;"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="logo">Naldo<span>A</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#radio">Rádio</a></li>
-                    <li><a href="#videos">Vídeos</a></li>
-                    <li><a href="#musicas">Músicas</a></li>
-                    <li><a href="#links">Links</a></li>
-                    <li><a href="#social">Redes Sociais</a></li>
-                </ul>
-            </nav>
+    <header id="header">
+        <div class="container navbar">
+            <a href="#hero" class="nav-logo">Naldo<span>A</span></a>
+            
+            <div class="header-radio">
+                <button id="play-pause-button" class="play-button"><i class="fas fa-play"></i></button>
+                <div class="status">
+                    <span class="radio-name">NaldoA Play</span>
+                    <div class="on-air-text">
+                        <div class="on-air-pulse"></div>
+                        <span>On Air</span>
+                    </div>
+                </div>
+                <audio id="radio-stream" src="https://stream.zeno.fm/xx785t45mf9uv"></audio>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#music">Música</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+                <li><a href="#links">Links</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </header>
 
-    <!-- Seção da Rádio -->
-    <section id="radio" class="radio-section glow">
+    <section id="hero" class="hero">
         <div class="container">
-            <h2 class="radio-title">Rádio NaldoA</h2>
-            <div class="radio-player">
-                <p>Ouça a Rádio NaldoA ao vivo!</p>
-                <div class="radio-controls">
-                    <button class="play-btn" id="play-radio">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <input type="range" class="volume-control" id="volume" min="0" max="100" value="50">
-                </div>
-                <p id="radio-status">Rádio pausada</p>
+            <div class="hero-content">
+                <h1>NaldoA</h1>
+                <p>O Seu Universo Sonoro</p>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Vídeos -->
-    <section id="videos" class="section glow">
-        <div class="container">
-            <h2 class="section-title">Meus Vídeos</h2>
-            <div class="videos-container">
-                <!-- Vídeo 1 -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
+    <main>
+        <section id="about" class="section">
+            <div class="container reveal">
+                <h2 class="section-title">A Jornada</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <i class="fas fa-user-astronaut"></i>
                     </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Meu Último Clipe</h3>
-                        <p>Confira meu mais recente trabalho audiovisual</p>
-                        <a href="#" class="video-link">Assistir</a>
-                    </div>
-                </div>
-                
-                <!-- Vídeo 2 -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Show Ao Vivo</h3>
-                        <p>Gravação do meu último show</p>
-                        <a href="#" class="video-link">Assistir</a>
-                    </div>
-                </div>
-                
-                <!-- Vídeo 3 -->
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">Making Of</h3>
-                        <p>Nos bastidores da produção</p>
-                        <a href="#" class="video-link">Assistir</a>
+                    <div class="about-text">
+                        <h3>Criando as batidas que movem o cosmos</h3>
+                        <p>Bem-vindo à minha galáxia musical. Sou NaldoA, um explorador sonoro dedicado a mapear as fronteiras da música eletrônica. Cada track é uma nebulosa de emoções, cada batida, uma supernova de energia.</p>
+                        <p>Navegue pelo site para descobrir novas constelações de som no Spotify e assistir a vídeos das minhas viagens musicais.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Seção de Músicas -->
-    <section id="musicas" class="section glow">
-        <div class="container">
-            <h2 class="section-title">Minhas Músicas</h2>
-            <div class="music-container">
-                <!-- Música 1 -->
-                <div class="music-card">
-                    <div class="music-icon">
-                        <i class="fas fa-music"></i>
+        <section id="music" class="section">
+            <div class="container reveal">
+                <h2 class="section-title">Minhas Músicas</h2>
+                <div class="music-grid">
+                    <div class="music-card">
+                        <div class="music-icon">
+                            <i class="fas fa-compact-disc"></i>
+                        </div>
+                        <h3 class="music-title">Galáxia Sonora</h3>
+                        <p class="music-description">Uma viagem através das estrelas com batidas cósmicas.</p>
+                        <a href="#" class="music-link">Ouvir Agora</a>
                     </div>
-                    <h3 class="music-title">Sucesso 1</h3>
-                    <p>Ouça agora no Spotify</p>
-                    <a href="#" class="music-link">Ouvir</a>
-                </div>
-                
-                <!-- Música 2 -->
-                <div class="music-card">
-                    <div class="music-icon">
-                        <i class="fas fa-music"></i>
+                    <div class="music-card">
+                        <div class="music-icon">
+                            <i class="fas fa-meteor"></i>
+                        </div>
+                        <h3 class="music-title">Nebulosa Dance</h3>
+                        <p class="music-description">Ritmos que transportam para outra dimensão.</p>
+                        <a href="#" class="music-link">Ouvir Agora</a>
                     </div>
-                    <h3 class="music-title">Sucesso 2</h3>
-                    <p>Ouça agora no Deezer</p>
-                    <a href="#" class="music-link">Ouvir</a>
-                </div>
-                
-                <!-- Música 3 -->
-                <div class="music-card">
-                    <div class="music-icon">
-                        <i class="fas fa-music"></i>
+                    <div class="music-card">
+                        <div class="music-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h3 class="music-title">Órbita Eletrônica</h3>
+                        <p class="music-description">Sintetizadores que giram em torno de você.</p>
+                        <a href="#" class="music-link">Ouvir Agora</a>
                     </div>
-                    <h3 class="music-title">Sucesso 3</h3>
-                    <p>Ouça agora no YouTube</p>
-                    <a href="#" class="music-link">Ouvir</a>
-                </div>
-                
-                <!-- Música 4 -->
-                <div class="music-card">
-                    <div class="music-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3 class="music-title">Sucesso 4</h3>
-                    <p>Ouça agora no Apple Music</p>
-                    <a href="#" class="music-link">Ouvir</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Seção de Links -->
-    <section id="links" class="section glow">
-        <div class="container">
-            <h2 class="section-title">Links Importantes</h2>
-            <div class="links-container">
-                <!-- Link 1 -->
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3 class="link-title">Loja Online</h3>
-                    <p>Compre meus produtos</p>
-                    <a href="#" class="link-btn">Acessar</a>
+        <section id="videos" class="section">
+            <div class="container reveal">
+                <h2 class="section-title">Transmissões Visuais</h2>
+                <div class="videos-grid">
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/aZHefqVqXpU" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/AnYGQcgD1nY" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/cSvC3vtNCkQ" allowfullscreen></iframe></div>
                 </div>
-                
-                <!-- Link 2 -->
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3 class="link-title">Agenda de Shows</h3>
-                    <p>Próximas apresentações</p>
-                    <a href="#" class="link-btn">Ver Agenda</a>
-                </div>
-                
-                <!-- Link 3 -->
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="link-title">Contato Profissional</h3>
-                    <p>Para contrataciones</p>
-                    <a href="#" class="link-btn">Entrar em Contato</a>
-                </div>
-                
-                <!-- Link 4 -->
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <h3 class="link-title">Press Kit</h3>
-                    <p>Material para imprensa</p>
-                    <a href="#" class="link-btn">Baixar</a>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button id="loadMoreBtn">Carregar Mais Transmissões</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Seção de Redes Sociais -->
-    <section id="social" class="social-section glow">
-        <div class="container">
-            <h2 class="social-title">Minhas Redes Sociais</h2>
-            <div class="social-buttons">
-                <a href="#" class="social-btn facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-btn instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-btn youtube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="#" class="social-btn twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-btn tiktok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="#" class="social-btn spotify">
-                    <i class="fab fa-spotify"></i>
-                </a>
+        <section id="links" class="section">
+            <div class="container reveal">
+                <h2 class="section-title">Links Importantes</h2>
+                <div class="links-grid">
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="link-title">Loja Online</h3>
+                        <p class="link-description">Adquira produtos exclusivos da marca NaldoA.</p>
+                        <a href="#" class="link-button">Visitar Loja</a>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="link-title">Agenda de Shows</h3>
+                        <p class="link-description">Confira datas e locais das próximas apresentações.</p>
+                        <a href="#" class="link-button">Ver Agenda</a>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="link-title">Contato Profissional</h3>
+                        <p class="link-description">Para contratações e parcerias comerciais.</p>
+                        <a href="#" class="link-button">Entrar em Contato</a>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3 class="link-title">Press Kit</h3>
+                        <p class="link-description">Material para imprensa e divulgação.</p>
+                        <a href="#" class="link-button">Baixar</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="footer-text">&copy; 2023 NaldoA - Todos os direitos reservados</p>
+            <div class="footer-socials">
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-spotify"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-soundcloud"></i></a>
+            </div>
+            <p>© 2025 NaldoA — Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Criar estrelas no fundo
-        function createStars() {
-            const spaceBackground = document.getElementById('space-background');
-            const starCount = 150;
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Posição aleatória
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                // Tamanho aleatório
-                const size = Math.random() * 3;
-                
-                // Atraso de animação aleatório
-                const delay = Math.random() * 5;
-                
-                star.style.left = `${x}%`;
-                star.style.top = `${y}%`;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDelay = `${delay}s`;
-                
-                spaceBackground.appendChild(star);
-            }
-        }
-
-        // Controle da rádio
-        let isPlaying = false;
-        const playBtn = document.getElementById('play-radio');
-        const volumeControl = document.getElementById('volume');
-        const radioStatus = document.getElementById('radio-status');
-
-        playBtn.addEventListener('click', function() {
-            isPlaying = !isPlaying;
-            
-            if (isPlaying) {
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                radioStatus.textContent = 'Rádio tocando...';
-                // Aqui você adicionaria o código para tocar a rádio
-            } else {
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                radioStatus.textContent = 'Rádio pausada';
-                // Aqui você adicionaria o código para pausar a rádio
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lógica do Header e Animações de Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
 
-        volumeControl.addEventListener('input', function() {
-            // Aqui você adicionaria o código para controlar o volume da rádio
-            console.log(`Volume: ${this.value}%`);
-        });
-
-        // Efeito de brilho ao rolar
-        const glowSections = document.querySelectorAll('.glow');
-        
-        function checkScroll() {
-            glowSections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.75) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
+        // Efeito de Brilho ao Rolar
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
             });
-        }
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => revealObserver.observe(el));
 
-        // Inicialização
-        window.addEventListener('load', function() {
-            createStars();
-            checkScroll();
+        // Rádio no Topo
+        const playPauseButton = document.getElementById('play-pause-button');
+        const radioStream = document.getElementById('radio-stream');
+        const onAirPulse = document.querySelector('.on-air-pulse');
+        
+        playPauseButton.addEventListener('click', () => {
+            if (radioStream.paused) {
+                radioStream.play();
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+                onAirPulse.style.display = 'block';
+            } else {
+                radioStream.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+                onAirPulse.style.display = 'none';
+            }
         });
 
-        window.addEventListener('scroll', checkScroll);
+        // Lógica "Carregar Mais Vídeos"
+        const allVideoIds = [ "dGdda27vfRM", "dwYoOnT_7Pc", "AHsb5xThjyk", "-wFl2OcdDnk", "GdE1z8Mf0zA", "s-p1w9kAkFY" ];
+        let loadedVideosCount = 3;
+        const videosGrid = document.querySelector('.videos-grid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+        function loadMoreVideos() {
+            const videosToLoad = allVideoIds.slice(loadedVideosCount, loadedVideosCount + 3);
+            videosToLoad.forEach(videoId => {
+                const videoContainer = document.createElement('div');
+                videoContainer.className = 'video-container reveal';
+                videoContainer.innerHTML = `<iframe loading="lazy" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+                videosGrid.appendChild(videoContainer);
+                revealObserver.observe(videoContainer);
+            });
+            loadedVideosCount += 3;
+            if (loadedVideosCount >= allVideoIds.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+        loadMoreBtn.addEventListener('click', loadMoreVideos);
+    });
     </script>
 </body>
 </html>
