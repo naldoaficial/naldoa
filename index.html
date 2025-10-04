@@ -3,70 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Músicas - NaldoA</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>NaldoA - Site Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        /* Estilo para o novo botão do Spotify */
-        .spotify-button {
-            display: inline-block;
-            background-color: #1DB954; /* Verde do Spotify */
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
+        :root {
+            --primary-color: #ffd700;
+            --secondary-color: #ffffff;
+            --background-dark: #0d0d0d;
+            --text-color: #f0f0f0;
+            --glass-bg: rgba(25, 25, 25, 0.5);
+            --blur-effect: blur(15px);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-dark);
+            background-image: url('background-show.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* --- Animação de Fade-in --- */
+        .reveal {
+            position: relative;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 1s all ease;
+        }
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        header.scrolled {
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: var(--blur-effect);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        .nav-logo img:hover { transform: scale(1.1); }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--secondary-color);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
             font-size: 1.1rem;
-            margin-top: 40px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: color 0.3s ease;
         }
-        .spotify-button:hover {
-            transform: scale(1.05);
-            background-color: #1ed760;
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger div { width: 25px; height: 3px; background-color: white; margin: 5px; transition: all 0.3s ease; }
+
+        /* --- Seção Hero --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
         }
-        .spotify-button .fab {
-            margin-left: 10px;
-            font-size: 1.3rem;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(13,13,13,0.5) 0%, rgba(13,13,13,1) 100%);
+        }
+        .hero-content { position: relative; }
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+        }
+        .hero-content .highlight { color: var(--primary-color); }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* --- Estilo das Seções --- */
+        .section {
+            padding: 100px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+        
+        /* --- Sobre --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            align-items: center;
+            gap: 60px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-effect);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* --- Rádio --- */
+        .radio-section {
+            background: linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.8)), url('radio-naldoa-play.jpg') no-repeat center center/cover;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .radio-logo { max-width: 300px; margin-bottom: 30px; }
+        .play-button {
+            width: 80px; height: 80px; font-size: 2rem;
+            background: var(--primary-color); color: #000;
+            border-radius: 50%; border: none; cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .play-button:hover { transform: scale(1.1); }
+
+        /* --- Spotify --- */
+        .spotify-section .container {
+            text-align: center;
+        }
+        .spotify-button {
+            display: inline-block; background-color: #1DB954; color: white;
+            padding: 15px 35px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; font-size: 1.1rem; margin-top: 40px;
+            transition: transform 0.2s ease;
+        }
+        .spotify-button:hover { transform: scale(1.05); }
+
+        /* --- Vídeos --- */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .video-container {
+            position: relative; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: 10px;
+        }
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+        .video-hidden { display: none; }
+        #loadMoreBtn {
+            display: block; margin: 40px auto 0; padding: 15px 40px;
+            background: var(--primary-color); color: #000; border: none;
+            border-radius: 50px; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: background 0.3s ease;
+        }
+        #loadMoreBtn:hover { background: var(--secondary-color); }
+        
+        /* --- Footer --- */
+        footer {
+            padding: 60px 0; text-align: center;
+            background: rgba(13, 13, 13, 0.9);
+        }
+        .footer-socials a {
+            color: var(--secondary-color); font-size: 2rem; margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+        .footer-socials a:hover { color: var(--primary-color); }
+        footer p { margin-top: 30px; }
+        
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%; top: 0; height: 100vh; width: 60%;
+                background: rgba(13,13,13,0.95); backdrop-filter: var(--blur-effect);
+                flex-direction: column; align-items: center; justify-content: center;
+                transition: right 0.5s ease-in-out;
+            }
+            .nav-links.nav-active { right: 0; }
+            .hamburger { display: block; }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .about-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html"><img src="naldoa-logo.jpg" alt="Logo NaldoA" class="logo-img"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="musica.html" class="active">Músicas</a></li>
-                    <li><a href="videos.html">Vídeos</a></li>
-                    <li><a href="radio.html">Rádio</a></li>
-                </ul>
-            </nav>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+
+    <header id="header">
+        <div class="container navbar">
+            <a href="#hero" class="nav-logo"><img src="naldoa-logo.jpg" alt="NaldoA Logo"></a>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#radio">Rádio</a></li>
+                <li><a href="#music">Música</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
             </div>
         </div>
     </header>
 
-    <main class="container page-content">
-        <section id="musicas" class="section" style="text-align: center;">
-            <h2 class="section-title">Minhas Músicas</h2>
-            <p class="section-subtitle">Ouça meu perfil completo diretamente no Spotify.</p>
-            
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>NALDO<span class="highlight">A</span></h1>
+            <p>DJ & Produtor de Electronic Dance Music</p>
+        </div>
+    </section>
 
-            <a href="https://open.spotify.com/intl-pt/artist/05anJA6CE7Afkn0hYyVMRV?si=c70o8qYcSLWs22c9pl1VjA" target="_blank" class="spotify-button">
-                Abrir no Spotify
-                <i class="fab fa-spotify"></i>
-            </a>
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <div class="about-content reveal">
+                    <div class="about-image">
+                        <img src="naldoa-studio.jpg" alt="NaldoA no estúdio">
+                    </div>
+                    <div class="about-text">
+                        <h3>Criando as batidas que movem você</h3>
+                        <p>Bem-vindo ao meu universo sonoro. Sou NaldoA, um artista dedicado a explorar as fronteiras da música eletrônica. Cada track é uma história, cada batida é uma emoção. Minha missão é conectar pessoas através da energia contagiante da dance music.</p>
+                        <p>Explore o site para ouvir minha rádio 24/7, conferir meus últimos lançamentos no Spotify e assistir a vídeos das minhas apresentações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="radio" class="section radio-section">
+            <div class="container reveal">
+                <img src="radio-naldoa-play.jpg" alt="NaldoA Play Radio Logo" class="radio-logo">
+                <audio id="radio-stream" src="https://stream.zeno.fm/xx785t45mf9uv"></audio>
+                <button id="play-pause-button" class="play-button"><i class="fas fa-play"></i></button>
+            </div>
+        </section>
+
+        <section id="music" class="section spotify-section">
+            <div class="container reveal">
+                <h2 class="section-title">Minha Música</h2>
+                <iframe data-testid="embed-iframe" style="border-radius:12px; border: 1px solid rgba(255,255,255,0.1);" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/intl-pt/artist/05anJA6CE7Afkn0hYyVMRV?si=c70o8qYcSLWs22c9pl1VjA" target="_blank" class="spotify-button">
+                    Abrir no Spotify <i class="fab fa-spotify"></i>
+                </a>
+            </div>
+        </section>
+        
+        <section id="videos" class="section">
+            <div class="container reveal">
+                <h2 class="section-title">Vídeos</h2>
+                <div class="videos-grid">
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/aZHefqVqXpU" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/AnYGQcgD1nY" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/cSvC3vtNCkQ" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/dGdda27vfRM" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/dwYoOnT_7Pc" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/AHsb5xThjyk" allowfullscreen></iframe></div>
+                    
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/-wFl2OcdDnk" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/GdE1z8Mf0zA" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/s-p1w9kAkFY" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/8FylSyd2Q6o" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/lcSXpMr0OUw" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/N4KYGevK0nA" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/UZfhORsxS98" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/BM4uCU1pUAY" allowfullscreen></iframe></div>
+                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/QoFsUuUjusc" allowfullscreen></iframe></div>
+                </div>
+                <button id="loadMoreBtn">Carregar Mais Vídeos</button>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2025 NaldoA — Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="footer-socials">
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-spotify"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p>© 2025 NaldoA — Todos os direitos reservados.</p>
+        </div>
     </footer>
+
+    <script>
+        // Lógica para o menu e animações
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu Hamburger
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-active');
+            });
+
+            // Mudar cor do header ao rolar
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Animação de revelação ao rolar
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Botão "Carregar Mais" Vídeos
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const hiddenVideos = document.querySelectorAll('.video-hidden');
+            loadMoreBtn.addEventListener('click', () => {
+                hiddenVideos.forEach(video => {
+                    video.style.display = 'block';
+                });
+                loadMoreBtn.style.display = 'none';
+            });
+            
+            // Player da Rádio
+            const playPauseButton = document.getElementById('play-pause-button');
+            const radioStream = document.getElementById('radio-stream');
+            playPauseButton.addEventListener('click', () => {
+                if (radioStream.paused) {
+                    radioStream.play();
+                    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    radioStream.pause();
+                    playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
