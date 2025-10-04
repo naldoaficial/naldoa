@@ -3,128 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaldoA Play 🎶</title>
+  <title>NaldoA Play</title>
   <style>
+    /* Fundo animado com brilho */
     body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
       animation: gradientBG 12s ease infinite;
-      color: white;
-      font-family: 'Arial Black', sans-serif;
+      color: #fff;
       text-align: center;
     }
-
-    header.hero {
-      padding: 60px 20px;
-    }
-
-    .glow {
-      color: #fff;
-      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff, 0 0 30px #ff0;
-      animation: pulse 2s infinite alternate;
-    }
-
-    .tagline {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-
-    section {
-      padding: 50px 20px;
-    }
-
-    h2.glow {
-      margin-bottom: 30px;
-    }
-
-    /* Efeito de fundo animado */
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
 
-    /* Brilho do texto */
-    @keyframes pulse {
-      from { text-shadow: 0 0 5px #f0f; }
-      to { text-shadow: 0 0 25px #0ff, 0 0 50px #ff0; }
+    /* Cabeçalho */
+    header {
+      padding: 30px;
+      font-size: 2em;
+      text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from {text-shadow: 0 0 10px #ff00ff;}
+      to {text-shadow: 0 0 25px #00ffff;}
     }
 
-    /* Equalizer animado */
-    .equalizer {
-      width: 120px;
-      height: 60px;
+    /* Player da rádio */
+    .radio {
       margin: 20px auto;
-      display: flex;
-      gap: 5px;
-    }
-
-    .equalizer div {
-      flex: 1;
-      background: cyan;
-      animation: bounce 1s infinite ease-in-out;
-    }
-
-    .equalizer div:nth-child(2) { animation-delay: 0.2s; }
-    .equalizer div:nth-child(3) { animation-delay: 0.4s; }
-    .equalizer div:nth-child(4) { animation-delay: 0.6s; }
-    .equalizer div:nth-child(5) { animation-delay: 0.8s; }
-
-    @keyframes bounce {
-      0%, 100% { height: 20px; }
-      50% { height: 60px; }
-    }
-
-    /* Player centralizado */
-    iframe {
-      border-radius: 10px;
-      box-shadow: 0 0 15px #000;
-    }
-
-    /* Rodapé */
-    footer {
       padding: 20px;
-      background: rgba(0,0,0,0.4);
-      margin-top: 30px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      width: 320px;
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background: #ff00ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      background: #00ffff;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+    }
+
+    /* Abas */
+    .tabs {
+      margin-top: 40px;
+    }
+    .tab-buttons {
+      margin-bottom: 20px;
+    }
+    .tab-buttons button {
+      background: #111;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin: 0 5px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    .tab-buttons button.active {
+      background: #00ffff;
+      color: #111;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    iframe {
+      width: 80%;
+      height: 315px;
+      margin: 10px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <!-- TOPO -->
-  <header class="hero">
-    <h1 class="glow">🎧 NaldoA Play</h1>
-    <p class="tagline">A rádio que não para • Energia sem limites 🔥</p>
+  <header>
+    🎶 Bem-vindo à NaldoA Play 🎶
   </header>
 
-  <!-- RÁDIO AO VIVO -->
-  <section class="radio">
-    <h2 class="glow">📻 Ouça ao vivo</h2>
-    <div class="equalizer">
-      <div></div><div></div><div></div><div></div><div></div>
+  <!-- Rádio no centro -->
+  <div class="radio">
+    <h2>📻 Minha Rádio</h2>
+    <audio controls>
+      <source src="URL-DA-SUA-RADIO-AQUI" type="audio/mpeg">
+      Seu navegador não suporta o player de rádio.
+    </audio>
+  </div>
+
+  <!-- Botões -->
+  <div>
+    <a href="https://open.spotify.com" target="_blank" class="btn">Spotify</a>
+    <a href="https://youtube.com/@DjNaldoAoficial" target="_blank" class="btn">YouTube</a>
+    <a href="https://www.instagram.com/DjNaldoAoficial" target="_blank" class="btn">Instagram</a>
+  </div>
+
+  <!-- Abas de vídeos -->
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="active" onclick="openTab(event, 'video1')">🎥 Vídeo 1</button>
+      <button onclick="openTab(event, 'video2')">🎥 Vídeo 2</button>
+      <button onclick="openTab(event, 'video3')">🎥 Vídeo 3</button>
     </div>
-    <!-- Substitua pelo seu player da rádio -->
-    <iframe src="URL-DA-SUA-RADIO" width="300" height="150" frameborder="0" allow="autoplay"></iframe>
-  </section>
+    <div id="video1" class="tab-content active">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id="video2" class="tab-content">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id="video3" class="tab-content">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 
-  <!-- SPOTIFY -->
-  <section class="spotify">
-    <h2 class="glow">🎶 Últimos Lançamentos</h2>
-    <iframe src="https://open.spotify.com/embed/album/SEU-ALBUM-ID" width="80%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  </section>
-
-  <!-- VÍDEOS -->
-  <section class="videos">
-    <h2 class="glow">🎥 Meus vídeos</h2>
-    <!-- Substitua pelos seus vídeos do YouTube -->
-    <iframe width="360" height="215" src="https://www.youtube.com/embed/SEU-VIDEO-ID" frameborder="0" allowfullscreen></iframe>
-  </section>
-
-  <!-- RODAPÉ -->
   <footer>
-    <p>© 2025 NaldoA • Todos os direitos reservados</p>
+    © 2025 NaldoA Play - Todos os direitos reservados.
   </footer>
+
+  <script>
+    function openTab(evt, tabId) {
+      var i, tabcontent, tabbuttons;
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+      }
+      tabbuttons = document.querySelectorAll(".tab-buttons button");
+      tabbuttons.forEach(btn => btn.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 </body>
 </html>
