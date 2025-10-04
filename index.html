@@ -3,55 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaldoA - Rádio e Música</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>NaldoA Play - Página Inicial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(270deg, #ff0080, #7928ca, #00f5ff, #ff0080);
+      background-size: 800% 800%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      width: 100%;
+      padding: 30px 20px;
+      text-align: center;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff0080;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #fff;
+    }
+
+    nav {
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav button {
+      background: linear-gradient(45deg, #ff0080, #00f5ff);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff0080, 0 0 20px #00f5ff;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    }
+
+    .radio-container {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .radio-container audio {
+      width: 350px;
+      outline: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff0080, 0 0 25px #00f5ff;
+    }
+
+    .photos, .videos {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .photos img, .videos iframe {
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #ff0080, 0 0 20px #00f5ff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .photos img:hover, .videos iframe:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff00ff, 0 0 30px #00ffff;
+    }
+
+    section h2 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #ff0080, 0 0 20px #00f5ff;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    @media(max-width: 768px) {
+      nav button { width: 90%; margin: 5px 0; }
+      .photos img, .videos iframe { width: 90%; }
+      .radio-container audio { width: 90%; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Cabeçalho -->
+
   <header>
-    <h1>🎶 Rádio NaldoA Play 🎧</h1>
-    <nav>
-      <a href="index.html" class="active">Início</a>
-      <a href="videos.html">Vídeos</a>
-      <a href="contato.html">Contato</a>
-    </nav>
+    <h1>NaldoA Play</h1>
   </header>
 
-  <!-- Rádio no topo -->
-  <section class="radio-section">
-    <h2>▶️ Ouça Agora</h2>
-    <audio controls autoplay>
-      <source src="https://stream.zeno.fm/f5u9svdudchvv" type="audio/mpeg">
+  <nav>
+    <button onclick="alert('Futura seção 1')">Seção 1</button>
+    <button onclick="alert('Futura seção 2')">Seção 2</button>
+    <button onclick="alert('Futura seção 3')">Seção 3</button>
+  </nav>
+
+  <div class="radio-container">
+    <h2>Ouça a Rádio NaldoA Play</h2>
+    <audio controls>
+      <source src="sua-radio.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio.
     </audio>
+  </div>
+
+  <section class="photos">
+    <h2>Minhas Fotos</h2>
+    <img src="foto1.jpg" alt="Foto NaldoA">
+    <img src="foto2.jpg" alt="Foto NaldoA">
+    <img src="foto3.jpg" alt="Foto NaldoA">
+    <!-- Adicione mais fotos -->
   </section>
 
-  <!-- Apresentação -->
-  <section class="about">
-    <h2>🔥 Bem-vindo ao universo NaldoA</h2>
-    <p>
-      Aqui você encontra minhas produções, sets e músicas exclusivas.  
-      Conecte-se à vibe eletrônica e curta o melhor da EDM com muito brilho e energia!
-    </p>
-    <div class="buttons">
-      <a href="videos.html" class="btn">🎬 Meus Vídeos</a>
-      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank" class="btn">📺 Canal no YouTube</a>
-    </div>
+  <section class="videos">
+    <h2>Vídeos</h2>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+    <!-- Adicione mais vídeos -->
   </section>
 
-  <!-- Redes sociais -->
-  <section class="social">
-    <h2>🌐 Conecte-se comigo</h2>
-    <div class="social-links">
-      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@DjNaldoAoficial" target="_blank">TikTok</a>
-      <a href="https://open.spotify.com" target="_blank">Spotify</a>
-    </div>
-  </section>
-
-  <!-- Rodapé -->
   <footer>
-    <p>© 2025 NaldoA - Todos os direitos reservados.</p>
+    &copy; 2025 NaldoA. Todos os direitos reservados.
   </footer>
+
 </body>
 </html>
