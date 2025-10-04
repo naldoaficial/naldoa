@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NaldoA - Site Oficial</title>
+    <title>NaldoA - O Universo Sonoro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #ffd700; /* Dourado */
-            --secondary-color: #ffffff; /* Branco */
-            --background-dark: #0d0d0d;
+            --primary-color: #9b59b6; /* Roxo principal */
+            --secondary-color: #3498db; /* Azul para o gradiente */
+            --highlight-color: #f1c40f; /* Dourado para detalhes */
+            --background-dark: #0f0c29; /* Fundo espacial escuro */
             --text-color: #f0f0f0;
-            --glass-bg: rgba(25, 25, 25, 0.5);
-            --blur-effect: blur(15px);
+            --glass-bg: rgba(25, 25, 25, 0.4);
+            --blur-effect: blur(10px);
             --gradient-shine: radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
-                               rgba(255, 215, 0, 0.2), /* Brilho dourado */
-                               rgba(255, 255, 255, 0.1), /* Brilho branco */
+                               rgba(155, 89, 182, 0.3), 
+                               rgba(52, 152, 219, 0.1),
                                transparent 40%);
         }
         * {
@@ -30,26 +31,30 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--text-color);
-            background-color: var(--background-dark);
-            background-image: url('background-show.jpg');
-            background-size: cover;
-            background-position: center top;
-            background-attachment: fixed;
-            /* Garante que o fundo não role */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
-        /* --- Animação de Fade-in --- */
+        /* --- Animação --- */
         .reveal {
             position: relative;
-            transform: translateY(80px); /* Ajuste para um início mais suave */
+            transform: translateY(100px);
             opacity: 0;
-            transition: 1s all ease-out; /* Transição mais suave */
+            transition: 1s all ease-out;
         }
         .reveal.active {
             transform: translateY(0);
@@ -63,114 +68,74 @@
             width: 100%;
             padding: 20px 0;
             z-index: 1000;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
         header.scrolled {
-            background: rgba(13, 13, 13, 0.85); /* Mais opaco ao rolar */
+            background: rgba(15, 12, 41, 0.85);
             backdrop-filter: var(--blur-effect);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Sombra para destacar */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo img {
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo img { height: 50px; transition: transform 0.3s ease; }
         .nav-logo img:hover { transform: scale(1.1); }
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a {
-            color: var(--secondary-color);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
             position: relative;
-            padding-bottom: 5px; /* Espaço para o underline */
+            padding-bottom: 5px;
             transition: color 0.3s ease;
         }
-        .nav-links a::after { /* Underline animado */
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: 0; left: 0; background-color: var(--highlight-color);
             transition: width 0.3s ease;
         }
         .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        .nav-links a:hover, .nav-links a.active { color: var(--highlight-color); }
         .hamburger { display: none; cursor: pointer; }
         .hamburger div { width: 25px; height: 3px; background-color: white; margin: 5px; transition: all 0.3s ease; }
 
-        /* --- Seção Hero --- */
+        /* --- Hero --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
         }
-        .hero::before { /* Escurecimento e gradiente no fundo */
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(13,13,13,0.4) 0%, rgba(13,13,13,0.9) 100%);
-            z-index: 1;
-        }
-        .hero-content { position: relative; z-index: 2; }
         .hero-content h1 {
-            font-size: 5.5rem; /* Fonte um pouco maior */
+            font-size: 5.5rem;
             font-weight: 900;
-            color: var(--secondary-color);
             text-transform: uppercase;
-            letter-spacing: 2px; /* Espaçamento para impacto */
-            text-shadow: 0 5px 20px rgba(0,0,0,0.7);
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--highlight-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 5s ease infinite;
+            background-size: 200% 200%;
         }
-        .hero-content .highlight { color: var(--primary-color); }
-        .hero-content p {
-            font-size: 1.7rem; /* Fonte um pouco maior */
-            margin-top: 15px;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-            font-weight: 300;
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+        .hero-content p { font-size: 1.7rem; margin-top: 15px; font-weight: 300; }
 
-        /* --- Estilo das Seções --- */
-        .section {
-            padding: 100px 0;
-            position: relative; /* Para o efeito de brilho */
-            overflow: hidden; /* Garante que o brilho não vaze */
-        }
+        /* --- Seções --- */
+        .section { padding: 100px 0; }
         .section-title {
             text-align: center;
-            font-size: 3.2rem; /* Mais impacto */
+            font-size: 3.2rem;
             font-weight: 700;
             margin-bottom: 60px;
             text-transform: uppercase;
-            position: relative;
-            padding-bottom: 15px;
-            color: var(--primary-color);
-        }
-        .section-title::after { /* Underline animado para o título */
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+            color: var(--highlight-color);
         }
         
-        /* --- Sobre (About) --- */
+        /* --- Sobre --- */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -181,174 +146,97 @@
             padding: 50px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative; /* Para o efeito de brilho */
-            overflow: hidden; /* Para garantir que o brilho não vaze */
+            position: relative;
+            overflow: hidden;
         }
-        .about-content::before { /* Efeito de brilho */
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-shine);
-            opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none; /* Permite interagir com o conteúdo por baixo */
-            z-index: 0;
+        .about-content::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; background: var(--gradient-shine);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none;
         }
         .about-content:hover::before { opacity: 1; }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .about-text h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: rgba(255,255,255,0.9);
-        }
+        .about-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .about-text h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--highlight-color); }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: rgba(255,255,255,0.9); }
 
         /* --- Rádio --- */
-        .radio-section {
-            background: linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.8)), url('radio-naldoa-play.jpg') no-repeat center center/cover;
-            background-size: cover; /* Garante que a imagem preencha */
-            background-attachment: fixed; /* Parallax para o fundo da rádio */
-            padding: 100px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .radio-logo { max-width: 300px; margin-bottom: 30px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+        .radio-section { text-align: center; }
+        .radio-logo { max-width: 300px; margin-bottom: 30px; }
         .play-button {
             width: 80px; height: 80px; font-size: 2.2rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Gradiente no botão */
-            color: #000;
-            border-radius: 50%; border: none; cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(255,215,0,0.4);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white; border-radius: 50%; border: none; cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(155, 89, 182, 0.5);
         }
         .play-button:hover { 
             transform: scale(1.1); 
-            box-shadow: 0 0 25px rgba(255,215,0,0.7), 0 0 40px rgba(255,255,255,0.3);
+            box-shadow: 0 0 25px var(--primary-color), 0 0 40px var(--secondary-color);
         }
 
         /* --- Spotify --- */
-        .spotify-section .container {
-            text-align: center;
-        }
+        .spotify-section .container { text-align: center; }
         .spotify-button {
             display: inline-block; background-color: #1DB954; color: white;
             padding: 15px 35px; border-radius: 50px; text-decoration: none;
             font-weight: bold; font-size: 1.1rem; margin-top: 40px;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
         }
-        .spotify-button:hover { 
-            transform: scale(1.05); 
-            background-color: #1ed760;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-        }
-        .spotify-button .fab { margin-left: 10px; }
+        .spotify-button:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4); }
 
         /* --- Vídeos --- */
         .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ajuste para telas menores */
-            gap: 25px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
         }
         .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
-            position: relative; /* Para o efeito de brilho */
-            overflow: hidden; /* Garante que o brilho não vaze */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
         }
-        .video-container::before { /* Efeito de brilho */
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-shine);
-            opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none;
-            z-index: 1; /* Acima do iframe, mas não bloqueia a interação */
-        }
-        .video-container:hover::before { opacity: 1; }
-
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; /* Acima do brilho */
-        }
-        .video-hidden { display: none; }
+        .video-container:hover { transform: translateY(-5px); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         #loadMoreBtn {
             display: block; margin: 40px auto 0; padding: 15px 40px;
-            background: var(--primary-color); color: #000; border: none;
+            background: var(--highlight-color); color: #000; border: none;
             border-radius: 50px; font-size: 1.1rem; font-weight: bold;
-            cursor: pointer; transition: background 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            cursor: pointer; transition: all 0.3s ease;
         }
-        #loadMoreBtn:hover { 
-            background: var(--secondary-color); 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-        }
+        #loadMoreBtn:hover { background: var(--secondary-color); color: #000; transform: translateY(-3px); }
         
         /* --- Footer --- */
         footer {
             padding: 60px 0; text-align: center;
-            background: rgba(13, 13, 13, 0.9);
+            background: rgba(15, 12, 41, 0.9);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .footer-socials a {
             color: var(--secondary-color); font-size: 2rem; margin: 0 20px;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
         }
-        .footer-socials a:hover { 
-            color: var(--primary-color); 
-            transform: translateY(-5px);
-            text-shadow: 0 0 15px rgba(255,215,0,0.7);
-        }
+        .footer-socials a:hover { color: var(--highlight-color); transform: translateY(-5px); }
         footer p { margin-top: 30px; font-size: 0.9rem; color: rgba(255,255,255,0.7); }
         
         /* --- Responsividade --- */
         @media (max-width: 768px) {
             .nav-links {
-                position: fixed;
-                right: -100%; top: 0; height: 100vh; width: 70%; /* Ajuste para melhor visualização */
-                background: rgba(13,13,13,0.95); backdrop-filter: var(--blur-effect);
+                position: fixed; right: -100%; top: 0; height: 100vh; width: 70%;
+                background: rgba(15, 12, 41, 0.98); backdrop-filter: var(--blur-effect);
                 flex-direction: column; align-items: center; justify-content: center;
                 transition: right 0.5s ease-in-out;
-                z-index: 999; /* Garante que o menu fique sobre tudo */
             }
-            .nav-links li { margin: 15px 0; }
-            .nav-links a { font-size: 1.5rem; }
             .nav-links.nav-active { right: 0; }
-            .hamburger { display: block; position: relative; z-index: 1001; } /* Garante que o hambúrguer fique visível */
-            
+            .hamburger { display: block; z-index: 1001; }
             .hero-content h1 { font-size: 3.5rem; }
             .hero-content p { font-size: 1.4rem; }
             .section-title { font-size: 2.5rem; }
-            .about-content { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
-            .about-text h3 { font-size: 2rem; }
-            .about-text p { font-size: 1rem; }
-            .videos-grid { grid-template-columns: 1fr; } /* Apenas um vídeo por linha em telas pequenas */
-            .footer-socials a { font-size: 1.5rem; margin: 0 10px; }
+            .about-content { grid-template-columns: 1fr; }
+            .videos-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    
+    <div id="particles-js"></div>
 
     <header id="header">
         <div class="container navbar">
@@ -366,23 +254,26 @@
     </header>
 
     <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>NALDO<span class="highlight">A</span></h1>
-            <p>DJ & Produtor de Electronic Dance Music</p>
+        <div class="container">
+            <div class="hero-content">
+                <h1>NaldoA</h1>
+                <p>O Seu Universo Sonoro</p>
+            </div>
         </div>
     </section>
 
     <main>
         <section id="about" class="section">
-            <div class="container">
-                <div class="about-content reveal">
+            <div class="container reveal">
+                <h2 class="section-title">A Jornada</h2>
+                <div class="about-content">
                     <div class="about-image">
                         <img src="naldoa-studio.jpg" alt="NaldoA no estúdio">
                     </div>
                     <div class="about-text">
-                        <h3>Criando as batidas que movem você</h3>
-                        <p>Bem-vindo ao meu universo sonoro. Sou NaldoA, um artista dedicado a explorar as fronteiras da música eletrônica. Cada track é uma história, cada batida é uma emoção. Minha missão é conectar pessoas através da energia contagiante da dance music.</p>
-                        <p>Explore o site para ouvir minha rádio 24/7, conferir meus últimos lançamentos no Spotify e assistir a vídeos das minhas apresentações.</p>
+                        <h3>Criando as batidas que movem o cosmos</h3>
+                        <p>Bem-vindo à minha galáxia musical. Sou NaldoA, um explorador sonoro dedicado a mapear as fronteiras da música eletrônica. Cada track é uma nebulosa de emoções, cada batida, uma supernova de energia.</p>
+                        <p>Navegue pelo site para sintonizar minha rádio 24/7, descobrir novas constelações de som no Spotify e assistir a vídeos das minhas viagens musicais.</p>
                     </div>
                 </div>
             </div>
@@ -390,6 +281,7 @@
 
         <section id="radio" class="section radio-section">
             <div class="container reveal">
+                <h2 class="section-title">Rádio Intergaláctica</h2>
                 <img src="radio-naldoa-play.jpg" alt="NaldoA Play Radio Logo" class="radio-logo">
                 <audio id="radio-stream" src="https://stream.zeno.fm/xx785t45mf9uv"></audio>
                 <button id="play-pause-button" class="play-button"><i class="fas fa-play"></i></button>
@@ -398,36 +290,23 @@
 
         <section id="music" class="section spotify-section">
             <div class="container reveal">
-                <h2 class="section-title">Minha Música</h2>
+                <h2 class="section-title">Constelação Musical</h2>
                 <iframe data-testid="embed-iframe" style="border-radius:12px; border: 1px solid rgba(255,255,255,0.1);" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 <a href="https://open.spotify.com/intl-pt/artist/05anJA6CE7Afkn0hYyVMRV?si=c70o8qYcSLWs22c9pl1VjA" target="_blank" class="spotify-button">
-                    Abrir no Spotify <i class="fab fa-spotify"></i>
+                    Explorar no Spotify <i class="fab fa-spotify"></i>
                 </a>
             </div>
         </section>
         
         <section id="videos" class="section">
             <div class="container reveal">
-                <h2 class="section-title">Vídeos</h2>
+                <h2 class="section-title">Transmissões Visuais</h2>
                 <div class="videos-grid">
                     <div class="video-container"><iframe src="https://www.youtube.com/embed/aZHefqVqXpU" allowfullscreen></iframe></div>
                     <div class="video-container"><iframe src="https://www.youtube.com/embed/AnYGQcgD1nY" allowfullscreen></iframe></div>
                     <div class="video-container"><iframe src="https://www.youtube.com/embed/cSvC3vtNCkQ" allowfullscreen></iframe></div>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/dGdda27vfRM" allowfullscreen></iframe></div>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/dwYoOnT_7Pc" allowfullscreen></iframe></div>
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/AHsb5xThjyk" allowfullscreen></iframe></div>
-                    
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/-wFl2OcdDnk" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/GdE1z8Mf0zA" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/s-p1w9kAkFY" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/8FylSyd2Q6o" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/lcSXpMr0OUw" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/N4KYGevK0nA" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/UZfhORsxS98" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/BM4uCU1pUAY" allowfullscreen></iframe></div>
-                    <div class="video-container video-hidden"><iframe loading="lazy" src="https://www.youtube.com/embed/QoFsUuUjusc" allowfullscreen></iframe></div>
-                </div>
-                <button id="loadMoreBtn">Carregar Mais Vídeos</button>
+                    </div>
+                <button id="loadMoreBtn">Carregar Mais Transmissões</button>
             </div>
         </section>
     </main>
@@ -444,87 +323,95 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Lógica para o menu e animações
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menu Hamburger
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('nav-active');
+    // Configuração das Partículas
+    particlesJS('particles-js', {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5, "random": true },
+            "size": { "value": 3, "random": true },
+            "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": { "enable": true, "mode": "grab" },
+                "onclick": { "enable": true, "mode": "push" },
+                "resize": true
+            },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+        },
+        "retina_detect": true
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
 
-            // Mudar cor do header ao rolar
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Animação de revelação ao rolar
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.1 });
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            // Efeito de Brilho nos Cards (Sobre e Vídeos)
-            document.querySelectorAll('.about-content, .video-container').forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-            });
-
-            // Botão "Carregar Mais" Vídeos
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const hiddenVideos = document.querySelectorAll('.video-hidden');
-            let videosShown = 6; // Já mostra os 6 primeiros
-            const videosToLoad = 3; // Carrega 3 vídeos por vez
-
-            // Função para mostrar vídeos
-            function showVideos() {
-                for (let i = 0; i < videosToLoad; i++) {
-                    if (hiddenVideos[videosShown - 6 + i]) { // Ajusta o índice para pegar do array de hidden
-                        hiddenVideos[videosShown - 6 + i].classList.remove('video-hidden');
-                        videosShown++;
-                    }
-                }
-                if (videosShown >= hiddenVideos.length + 6) { // +6 pelos vídeos iniciais
-                    loadMoreBtn.style.display = 'none'; // Esconde o botão se todos foram mostrados
-                }
-            }
-
-            // Esconder todos os vídeos a partir do 7º ao iniciar
-            for (let i = 0; i < hiddenVideos.length; i++) {
-                hiddenVideos[i].classList.add('video-hidden');
-            }
-            
-            loadMoreBtn.addEventListener('click', showVideos);
-
-            // Player da Rádio
-            const playPauseButton = document.getElementById('play-pause-button');
-            const radioStream = document.getElementById('radio-stream');
-            playPauseButton.addEventListener('click', () => {
-                if (radioStream.paused) {
-                    radioStream.play();
-                    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    radioStream.pause();
-                    playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
-                }
+        document.querySelectorAll('.about-content').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
+
+        const playPauseButton = document.getElementById('play-pause-button');
+        const radioStream = document.getElementById('radio-stream');
+        playPauseButton.addEventListener('click', () => {
+            if (radioStream.paused) {
+                radioStream.play();
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                radioStream.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+
+        // Lógica "Carregar Mais Vídeos" simplificada
+        const allVideos = [
+            "dGdda27vfRM", "dwYoOnT_7Pc", "AHsb5xThjyk", "-wFl2OcdDnk",
+            "GdE1z8Mf0zA", "s-p1w9kAkFY", "8FylSyd2Q6o", "lcSXpMr0OUw",
+            "N4KYGevK0nA", "UZfhORsxS98", "BM4uCU1pUAY", "QoFsUuUjusc"
+        ];
+        let loadedVideosCount = 0;
+        const videosGrid = document.querySelector('.videos-grid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+        function loadMoreVideos() {
+            const videosToLoad = allVideos.slice(loadedVideosCount, loadedVideosCount + 3);
+            videosToLoad.forEach(videoId => {
+                const videoContainer = document.createElement('div');
+                videoContainer.className = 'video-container reveal';
+                videoContainer.innerHTML = `<iframe loading="lazy" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+                videosGrid.appendChild(videoContainer);
+                revealObserver.observe(videoContainer); // Adiciona o novo vídeo ao observador de animação
+            });
+            loadedVideosCount += 3;
+            if (loadedVideosCount >= allVideos.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+        loadMoreBtn.addEventListener('click', loadMoreVideos);
+    });
     </script>
 </body>
 </html>
