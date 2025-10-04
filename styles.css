@@ -1,518 +1,152 @@
-/* =========================
-   styles.css - Neon Moderno
-========================= */
-
-/* =========================
-   VARIÁVEIS
-========================= */
-:root {
-  --bg: #0b0f1a;
-  --card: #0f1724;
-  --accent1: #00e5ff;
-  --accent2: #b300ff;
-  --glass: rgba(255, 255, 255, 0.04);
-  --radius: 12px;
-  --maxw: 1100px;
-}
-
-/* =========================
-   RESET E GERAL
-========================= */
-* {
-  box-sizing: border-box;
-}
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg,#05060a 0%, #071022 100%);
-  color: #e6eef8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.45;
-  padding-bottom: 60px;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* =========================
-   TOPO DA RÁDIO
-========================= */
-.radio-topo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: #111;
-  color: #fff;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-.radio-topo .logo-radio {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.radio-topo h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #1DB954;
-}
-
-.radio-topo audio {
-  margin-top: 5px;
-  width: 250px;
-  border-radius: 10px;
-}
-
-/* =========================
-   FOTO FIXA
-========================= */
-.foto-naldoa {
-  width: 400px;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* =========================
-   VÍDEOS RESPONSIVOS
-========================= */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000;
-  margin-bottom: 20px;
-}
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* =========================
-   HEADER
-========================= */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 18px;
-  max-width: var(--maxw);
-  margin: 0 auto;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo {
-  height: 48px;
-}
-
-.nav {
-  position: relative;
-}
-
-.nav-toggle {
-  display: none;
-  background: none;
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 6px 10px;
-  border-radius: 8px;
-  color: inherit;
-}
-
-.nav-list {
-  display: flex;
-  gap: 14px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-list a {
-  color: inherit;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background .18s;
-}
-
-.nav-list a:hover {
-  background: var(--glass);
-}
-
-/* =========================
-   HERO / CAPA PRINCIPAL
-========================= */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  max-width: var(--maxw);
-  margin: 20px auto;
-  padding: 24px;
-  background: linear-gradient(135deg, rgba(179,0,255,0.06), rgba(0,229,255,0.04));
-  border-radius: 18px;
-  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
-}
-
-.hero-inner {
-  flex: 1;
-}
-
-.title {
-  font-size: 48px;
-  margin: 0 0 8px;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 20px rgba(179,0,255,0.16);
-}
-
-.subtitle {
-  margin: 0 0 18px;
-  color: #bcd7ff;
-}
-
-.hero-ctas {
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  color: #021020;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.btn.ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.06);
-  color: inherit;
-}
-
-.hero-cover img {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-}
-
-/* =========================
-   SEÇÕES
-========================= */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.about, .music, .contact {
-  margin: 26px 0;
-  padding: 22px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.02);
-}
-
-/* =========================
-   ÁLBUNS / MÚSICAS
-========================= */
-.albums {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.album {
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-  padding: 12px;
-  border-radius: 12px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.album img {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.album h4 {
-  margin: 0 0 6px;
-  font-size: 16px;
-}
-
-/* BOTÃO SPOTIFY */
-.btn-spotify {
-  display: inline-block;
-  padding: 12px 20px;
-  background-color: #1DB954;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: 0.3s;
-}
-
-.btn-spotify:hover {
-  background-color: #1aa34a;
-}
-
-/* =========================
-   PLAYER
-========================= */
-.player {
-  margin-top: 8px;
-}
-
-.playlist {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-
-.track {
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.03);
-  cursor: pointer;
-}
-
-/* =========================
-   FORMULÁRIO
-========================= */
-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input[type="text"], input[type="email"], textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.04);
-  background: transparent;
-  color: inherit;
-}
-
-.form-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 8px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-.site-footer {
-  margin-top: 24px;
-  padding: 18px;
-  text-align: center;
-  color: #a8bed6;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-@media (max-width:800px) {
-  .hero { flex-direction: column; align-items: flex-start; }
-  .hero-cover img { width: 100%; height: auto; }
-  
-  .nav-list {
-    position: absolute;
-    right: 0;
-    top: 56px;
-    background: rgba(8,12,20,0.96);
-    flex-direction: column;
-    padding: 12px;
-    border-radius: 8px;
-    display: none;
-  }
-  
-  .nav-list.show { display: flex; }
-  .nav-toggle { display: inline-block; }
-}
-
-/* ---------- Botão YouTube (na nav) ---------- */
-/* botão grande, chamativo, com ícone e cor parecida com YouTube */
-.youtube-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 24px;
-  background: linear-gradient(90deg,#ff3b3b,#ff0000);
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 6px 20px rgba(255,59,59,0.18);
-  transition: transform .12s;
-}
-.youtube-btn:hover { transform: translateY(-2px); }
-
-/* ---------- Grid de vídeos (nova página) ---------- */
-.video-grid {
-  display: grid;
-  /* 1 coluna em celular, 2 colunas em tablet, 3 em desktop (auto) */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
-  align-items: start;
-  margin-top: 14px;
-}
-
-/* Cada vídeo usa o mesmo padrão responsivo (16:9) */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-
-/* Limitar tamanho visual em telas muito largas (para não ficar gigante) */
-.video-grid .video-container {
-  max-width: 720px; /* limite por vídeo; ajuste se quiser menor (ex: 480px) */
-  margin: 0 auto; /* centraliza cada vídeo na coluna */
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 12px;
-}
-
-/* Responsividade extra: menos padding em celulares */
-@media (max-width: 480px) {
-  .video-grid {
-    gap: 12px;
-  }
-  .video-grid .video-container { max-width: 100%; } /* ocupa 100% da coluna em celular */
-}
-
-/* =========================
-   BASE
-========================= */
+/* Reset */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  padding: 20px;
   background: #111;
-  color: #fff;
-  line-height: 1.6;
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-a { color: #1db954; text-decoration: none; }
-a:hover { text-decoration: underline; }
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #00ffe0;
+  text-shadow: 0 0 15px #00ffe0, 0 0 30px #0077ff;
+  animation: glow 2s infinite alternate;
+}
 
-/* =========================
-   HEADER
-========================= */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #000;
-  padding: 10px 20px;
+@keyframes glow {
+  from { text-shadow: 0 0 15px #00ffe0; }
+  to { text-shadow: 0 0 25px #00c3ff, 0 0 40px #00ffe0; }
 }
-.logo {
-  width: 50px;
-  border-radius: 50%;
+
+nav {
+  margin-top: 10px;
 }
-.nav-list {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-.nav-list a {
-  color: #fff;
+
+nav a {
+  text-decoration: none;
+  color: #bbb;
+  margin: 0 15px;
   font-weight: bold;
-}
-.nav-toggle {
-  display: none;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* =========================
-   HERO
-========================= */
-.hero {
+nav a:hover, nav a.active {
+  color: #00ffe0;
+  text-shadow: 0 0 10px #00ffe0;
+}
+
+/* Rádio */
+.radio-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f0f0f, #222);
+  box-shadow: inset 0 0 20px rgba(0,255,224,0.2);
+}
+
+.radio-section h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px #00ffe0;
+}
+
+.radio-section audio {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,224,0.6);
+}
+
+/* Sobre */
+.about {
   text-align: center;
   padding: 50px 20px;
 }
 
-/* =========================
-   VÍDEOS
-========================= */
-.videos-page {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-.videos-grid iframe {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
+.about h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #00ffe0;
+  text-shadow: 0 0 15px #00ffe0;
 }
 
-/* =========================
-   FOOTER
-========================= */
-.site-footer {
+.about p {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  background: #00ffe0;
+  color: #000;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 0 15px #00ffe0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00ffe0, 0 0 40px #00c3ff;
+}
+
+/* Redes sociais */
+.social {
   text-align: center;
-  padding: 20px;
-  background: #000;
-  margin-top: 30px;
+  padding: 40px 20px;
+  background: #111;
+  box-shadow: inset 0 0 20px rgba(0,255,224,0.2);
 }
 
+.social h2 {
+  margin-bottom: 20px;
+  color: #00ffe0;
+  text-shadow: 0 0 15px #00ffe0;
+}
 
+.social-links a {
+  margin: 10px;
+  text-decoration: none;
+  color: #00ffe0;
+  font-weight: bold;
+  padding: 10px 18px;
+  border: 1px solid #00ffe0;
+  border-radius: 25px;
+  transition: background 0.3s, color 0.3s;
+}
 
-/* =========================
-   ACESSIBILIDADE
-========================= */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
+.social-links a:hover {
+  background: #00ffe0;
+  color: #000;
+  box-shadow: 0 0 20px #00ffe0;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #111;
+  font-size: 14px;
+  color: #bbb;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
