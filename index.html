@@ -1,164 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NaldoA — DJ & Produtor | Official</title>
-  <meta name="description" content="NaldoA — DJ e produtor de EDM. Ouça músicas, assista ao canal no YouTube e entre em contato para shows." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaldoA Play 🎶</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
+      text-align: center;
+    }
+
+    header.hero {
+      padding: 60px 20px;
+    }
+
+    .glow {
+      color: #fff;
+      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff, 0 0 30px #ff0;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 50px 20px;
+    }
+
+    h2.glow {
+      margin-bottom: 30px;
+    }
+
+    /* Efeito de fundo animado */
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Brilho do texto */
+    @keyframes pulse {
+      from { text-shadow: 0 0 5px #f0f; }
+      to { text-shadow: 0 0 25px #0ff, 0 0 50px #ff0; }
+    }
+
+    /* Equalizer animado */
+    .equalizer {
+      width: 120px;
+      height: 60px;
+      margin: 20px auto;
+      display: flex;
+      gap: 5px;
+    }
+
+    .equalizer div {
+      flex: 1;
+      background: cyan;
+      animation: bounce 1s infinite ease-in-out;
+    }
+
+    .equalizer div:nth-child(2) { animation-delay: 0.2s; }
+    .equalizer div:nth-child(3) { animation-delay: 0.4s; }
+    .equalizer div:nth-child(4) { animation-delay: 0.6s; }
+    .equalizer div:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 20px; }
+      50% { height: 60px; }
+    }
+
+    /* Player centralizado */
+    iframe {
+      border-radius: 10px;
+      box-shadow: 0 0 15px #000;
+    }
+
+    /* Rodapé */
+    footer {
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  
-
-  <!-- =========================
-       TOPO DA RÁDIO
-  ========================= -->
-  <header class="radio-topo">
-    <img src="assets/radio naldoa play.jpg" alt="radio naldoa play" class="logo-radio">
-    <div>
-      <h2>📻 Rádio NaldoA Play</h2>
-      <audio controls>
-        <source src="https://stream.zeno.fm/xx785t45mf9uv" type="audio/mpeg">
-        Seu navegador não suporta o player de áudio.
-      </audio>
-    </div>
+  <!-- TOPO -->
+  <header class="hero">
+    <h1 class="glow">🎧 NaldoA Play</h1>
+    <p class="tagline">A rádio que não para • Energia sem limites 🔥</p>
   </header>
 
-  <!-- =========================
-       HEADER / MENU
-  ========================= -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="assets/NA.jpg" alt="Logo NaldoA" class="logo" />
-      <h1 class="sr-only">NaldoA</h1>
+  <!-- RÁDIO AO VIVO -->
+  <section class="radio">
+    <h2 class="glow">📻 Ouça ao vivo</h2>
+    <div class="equalizer">
+      <div></div><div></div><div></div><div></div><div></div>
     </div>
-    <nav class="nav">
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
-      <ul class="nav-list" id="navList">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#musicas">Músicas</a></li>
-        <li><a href="#videos" target="_blank">Vídeos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Substitua pelo seu player da rádio -->
+    <iframe src="URL-DA-SUA-RADIO" width="300" height="150" frameborder="0" allow="autoplay"></iframe>
+  </section>
 
-  <main>
+  <!-- SPOTIFY -->
+  <section class="spotify">
+    <h2 class="glow">🎶 Últimos Lançamentos</h2>
+    <iframe src="https://open.spotify.com/embed/album/SEU-ALBUM-ID" width="80%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </section>
 
-    <!-- =========================
-         HERO / CAPA PRINCIPAL
-    ========================= -->
-    <section id="home" class="hero">
-      <div class="hero-inner">
-        <h2 class="title">NaldoA</h2>
-        <p class="subtitle">EDM • Produções originais • Em Todas as Plataformas Digitais</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#musicas">Ouvir agora</a>
-          <a class="btn ghost" href="https://www.youtube.com/@DjNaldoAOficial" target="_blank" rel="noopener">Canal no YouTube</a>
-          <a class="btn ghost" href="videos.html" target="_blank">Ver todos os vídeos</a>
-        </div>
-      </div>
+  <!-- VÍDEOS -->
+  <section class="videos">
+    <h2 class="glow">🎥 Meus vídeos</h2>
+    <!-- Substitua pelos seus vídeos do YouTube -->
+    <iframe width="360" height="215" src="https://www.youtube.com/embed/SEU-VIDEO-ID" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-      <!-- Foto do NaldoA -->
-      <img src="assets/NaldoA.jpg" alt="NaldoA" class="foto-naldoa">
-    </section>
-
-    <!-- =========================
-         SOBRE
-    ========================= -->
-    <section id="sobre" class="about">
-      <div class="container">
-        <h3>Sobre</h3>
-        <p>Sou o <strong>NaldoA</strong>, DJ e produtor focado em EDM. Tenho <strong>4 álbuns lançados</strong> disponíveis em plataformas digitais e um canal no YouTube chamado <em>NaldoA</em>. Uso o perfil <code>@DjNaldoAoficial</code> no TikTok para divulgar minhas tracks.</p>
-        <p>Este site é meu hub oficial: discografia, players, links para streaming e contato para shows e parcerias.</p>
-      </div>
-    </section>
-
-    <!-- =========================
-         MÚSICAS / ÁLBUNS
-    ========================= -->
-    <section id="musicas" class="music">
-      <div class="container">
-        <h3>Discografia & Player</h3>
-
-        <!-- Álbuns -->
-        <div class="albums">
-          <article class="album">
-            <a href="https://open.spotify.com/album/5GmHkjAUvZq8UgP1XfwkS3?si=pqE_6o4GR8a3ZBotMqhsqQ" target="_blank" class="btn-spotify">
-              🎵 Ouça no Spotify
-            </a>
-            <img src="assets/Tiempo Loco.jpg" alt="Álbum 1" />
-            <h4>Álbum 1</h4>
-            <p>Single/EP de destaque. Disponível em plataformas.</p>
-          </article>
-
-          <article class="album">
-            <a href="https://open.spotify.com/album/5JGxeoiFb3dlQmXRiumOBN?si=fwuJjBjVR9CibC5vYjq46g" target="_blank" class="btn-spotify">
-              🎵 Ouça no Spotify
-            </a>
-            <img src="assets/The Last Dance.jpg" alt="Álbum 2" />
-            <h4>Álbum 2</h4>
-            <p>Energia e drops potentes.</p>
-          </article>
-        </div>
-
-        <!-- Player de música -->
-        <div class="player">
-          <h4>Ouvir Minha Nova Música - Infinite</h4>
-          <div class="playlist" id="playlist">
-            <button class="track" data-src="assets/sample_track.wav">Sample Track — 0:03</button>
-          </div>
-          <audio id="audioPlayer" controls preload="none">
-            <source id="audioSource" src="assets/sample_track.wav" type="audio/wav" />
-            Seu navegador não suporta o elemento de áudio.
-          </audio>
-
-          <!-- Embed Spotify -->
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/05anJA6CE7Afkn0hYyVMRV?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
-         CONTATO
-    ========================= -->
-    <section id="contato" class="contact">
-      <div class="container">
-        <h3>Contato</h3>
-        <p>Quer me contratar ou fazer uma parceria? Use o formulário ou mande uma mensagem direta:</p>
-        <form id="contactForm">
-          <label>
-            Nome
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            E‑mail
-            <input type="email" name="email" required />
-          </label>
-          <label>
-            Mensagem
-            <textarea name="message" rows="4" required></textarea>
-          </label>
-          <div class="form-actions">
-            <button type="submit" class="btn">Enviar por e‑mail</button>
-            <a class="btn ghost" id="whatsappBtn" href="#">WhatsApp</a>
-          </div>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© NaldoA — Todos os direitos Reservados.</p>
-    </div>
+  <!-- RODAPÉ -->
+  <footer>
+    <p>© 2025 NaldoA • Todos os direitos reservados</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
