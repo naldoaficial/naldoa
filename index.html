@@ -3,129 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NaldoA Play 🎶</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
-      color: white;
-      font-family: 'Arial Black', sans-serif;
-      text-align: center;
-    }
-
-    header.hero {
-      padding: 60px 20px;
-    }
-
-    .glow {
-      color: #fff;
-      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff, 0 0 30px #ff0;
-      animation: pulse 2s infinite alternate;
-    }
-
-    .tagline {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-
-    section {
-      padding: 50px 20px;
-    }
-
-    h2.glow {
-      margin-bottom: 30px;
-    }
-
-    /* Efeito de fundo animado */
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    /* Brilho do texto */
-    @keyframes pulse {
-      from { text-shadow: 0 0 5px #f0f; }
-      to { text-shadow: 0 0 25px #0ff, 0 0 50px #ff0; }
-    }
-
-    /* Equalizer animado */
-    .equalizer {
-      width: 120px;
-      height: 60px;
-      margin: 20px auto;
-      display: flex;
-      gap: 5px;
-    }
-
-    .equalizer div {
-      flex: 1;
-      background: cyan;
-      animation: bounce 1s infinite ease-in-out;
-    }
-
-    .equalizer div:nth-child(2) { animation-delay: 0.2s; }
-    .equalizer div:nth-child(3) { animation-delay: 0.4s; }
-    .equalizer div:nth-child(4) { animation-delay: 0.6s; }
-    .equalizer div:nth-child(5) { animation-delay: 0.8s; }
-
-    @keyframes bounce {
-      0%, 100% { height: 20px; }
-      50% { height: 60px; }
-    }
-
-    /* Player centralizado */
-    iframe {
-      border-radius: 10px;
-      box-shadow: 0 0 15px #000;
-    }
-
-    /* Rodapé */
-    footer {
-      padding: 20px;
-      background: rgba(0,0,0,0.4);
-      margin-top: 30px;
-    }
-  </style>
+  <title>NaldoA - Rádio e Música</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- TOPO -->
-  <header class="hero">
-    <h1 class="glow">🎧 NaldoA Play</h1>
-    <p class="tagline">A rádio que não para • Energia sem limites 🔥</p>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🎶 Rádio NaldoA Play 🎧</h1>
+    <nav>
+      <a href="index.html" class="active">Início</a>
+      <a href="videos.html">Vídeos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
   </header>
 
-  <!-- RÁDIO AO VIVO -->
-  <section class="radio">
-    <h2 class="glow">📻 Ouça ao vivo</h2>
-    <div class="equalizer">
-      <div></div><div></div><div></div><div></div><div></div>
+  <!-- Rádio no topo -->
+  <section class="radio-section">
+    <h2>▶️ Ouça Agora</h2>
+    <audio controls autoplay>
+      <source src="https://stream.zeno.fm/f5u9svdudchvv" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </section>
+
+  <!-- Apresentação -->
+  <section class="about">
+    <h2>🔥 Bem-vindo ao universo NaldoA</h2>
+    <p>
+      Aqui você encontra minhas produções, sets e músicas exclusivas.  
+      Conecte-se à vibe eletrônica e curta o melhor da EDM com muito brilho e energia!
+    </p>
+    <div class="buttons">
+      <a href="videos.html" class="btn">🎬 Meus Vídeos</a>
+      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank" class="btn">📺 Canal no YouTube</a>
     </div>
-    <!-- Substitua pelo seu player da rádio -->
-    <iframe src="URL-DA-SUA-RADIO" width="300" height="150" frameborder="0" allow="autoplay"></iframe>
   </section>
 
-  <!-- SPOTIFY -->
-  <section class="spotify">
-    <h2 class="glow">🎶 Últimos Lançamentos</h2>
-    <iframe src="https://open.spotify.com/embed/album/SEU-ALBUM-ID" width="80%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <!-- Redes sociais -->
+  <section class="social">
+    <h2>🌐 Conecte-se comigo</h2>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@DjNaldoAoficial" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@DjNaldoAoficial" target="_blank">TikTok</a>
+      <a href="https://open.spotify.com" target="_blank">Spotify</a>
+    </div>
   </section>
 
-  <!-- VÍDEOS -->
-  <section class="videos">
-    <h2 class="glow">🎥 Meus vídeos</h2>
-    <!-- Substitua pelos seus vídeos do YouTube -->
-    <iframe width="360" height="215" src="https://www.youtube.com/embed/SEU-VIDEO-ID" frameborder="0" allowfullscreen></iframe>
-  </section>
-
-  <!-- RODAPÉ -->
+  <!-- Rodapé -->
   <footer>
-    <p>© 2025 NaldoA • Todos os direitos reservados</p>
+    <p>© 2025 NaldoA - Todos os direitos reservados.</p>
   </footer>
 </body>
 </html>
+
 
